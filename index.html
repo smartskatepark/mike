@@ -3,17 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FutureSurface Technologies | Active Safety Matrix</title>
+    <title>FutureSurface Technologies | Active Attenuation Matrix</title>
     <style>
         :root {
-            --bg-main: #02040a;
-            --bg-surface: #0a0f1d;
+            --bg-main: #02050d;
+            --bg-card: rgba(8, 14, 30, 0.85);
             --cyber-cyan: #00f3ff;
             --cyber-blue: #0066ff;
             --cyber-magenta: #ff0055;
             --text-gold: #d4af37;
             --text-white: #ffffff;
-            --text-gray: #7e8da2;
+            --text-muted: #94a9c4;
+            --grid-brightness: rgba(0, 243, 255, 0.22); /* Cranking grid line visibility up by 400% */
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -21,207 +22,188 @@
         body { 
             background-color: var(--bg-main); 
             color: var(--text-white); 
-            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif; 
-            line-height: 1.5; 
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif; 
+            line-height: 1.6; 
             overflow-x: hidden;
-            background-image: 
-                linear-gradient(rgba(0, 243, 255, 0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 243, 255, 0.05) 1px, transparent 1px);
-            background-size: 50px 50px;
-        }
-
-        /* GLOWING AMBIENT BACKGROUNDS */
-        .glow-orb-1 {
-            position: absolute; top: -200px; left: -100px; width: 600px; height: 600px;
-            background: radial-gradient(circle, rgba(0, 243, 255, 0.15) 0%, transparent 70%);
-            z-index: -1; pointer-events: none;
-        }
-        .glow-orb-2 {
-            position: absolute; top: 400px; right: -200px; width: 700px; height: 700px;
-            background: radial-gradient(circle, rgba(255, 0, 85, 0.08) 0%, transparent 70%);
-            z-index: -1; pointer-events: none;
-        }
-
-        .container { max-width: 1200px; margin: 0 auto; padding: 80px 20px; position: relative; }
-
-        /* HERO BLOCK */
-        header { 
-            text-align: center; 
-            padding: 80px 40px;
-            background: rgba(10, 15, 29, 0.7);
-            border: 2px solid rgba(0, 243, 255, 0.3);
-            border-radius: 16px;
-            margin-bottom: 60px; 
-            backdrop-filter: blur(20px);
-            box-shadow: 0 0 50px rgba(0, 243, 255, 0.15), inset 0 0 20px rgba(0, 243, 255, 0.1);
             position: relative;
+            min-height: 100vh;
         }
 
-        .live-pulse {
-            display: inline-flex; align-items: center; gap: 8px;
-            padding: 6px 16px; background: rgba(0, 243, 255, 0.1);
-            border: 1px solid var(--cyber-cyan); border-radius: 30px;
-            color: var(--cyber-cyan); font-size: 0.75rem; font-weight: 800;
-            letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 25px;
-            animation: pulse-border 2s infinite;
+        /* HYPER-BRIGHT INTERACTIVE BLUEPRINT BACKGROUND GRID MATRIX */
+        .matrix-grid {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -2;
+            background-image: 
+                linear-gradient(var(--grid-brightness) 1.5px, transparent 1.5px),
+                linear-gradient(90deg, var(--grid-brightness) 1.5px, transparent 1.5px);
+            background-size: 50px 50px;
+            pointer-events: none;
         }
-        .pulse-dot {
-            width: 8px; height: 8px; background-color: var(--cyber-cyan);
-            border-radius: 50%; box-shadow: 0 0 10px var(--cyber-cyan);
-            animation: blink 1.5s infinite;
+
+        /* MOUSE-TRACKING GLOW SHIELD (DYNAMIC RADAR CURSOR) */
+        .cursor-glow {
+            position: fixed; top: 0; left: 0; width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(0, 243, 255, 0.18) 0%, rgba(0, 102, 255, 0.05) 40%, transparent 70%);
+            border-radius: 50%; z-index: -1; transform: translate(-50%, -50%);
+            pointer-events: none; transition: transform 0.05s linear;
+        }
+
+        .container { max-width: 1300px; margin: 0 auto; padding: 80px 20px; position: relative; }
+
+        /* THE ENTERPRISE HEADER */
+        header { 
+            text-align: center; padding: 80px 40px;
+            background: rgba(6, 11, 25, 0.9); border: 2px solid var(--cyber-cyan); border-radius: 16px;
+            margin-bottom: 60px; backdrop-filter: blur(20px);
+            box-shadow: 0 0 50px rgba(0, 243, 255, 0.3), inset 0 0 20px rgba(0, 243, 255, 0.1);
+        }
+
+        .status-node {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 8px 20px; background: rgba(0, 243, 255, 0.12);
+            border: 1px solid var(--cyber-cyan); border-radius: 30px;
+            color: var(--cyber-cyan); font-size: 0.8rem; font-weight: 800;
+            letter-spacing: 0.25em; text-transform: uppercase; margin-bottom: 30px;
+        }
+        .status-dot {
+            width: 10px; height: 10px; background-color: var(--cyber-cyan);
+            border-radius: 50%; box-shadow: 0 0 12px var(--cyber-cyan);
+            animation: beacon 1.5s infinite;
         }
 
         h1 { 
-            font-size: 4rem; font-weight: 900; letter-spacing: -0.04em; 
+            font-size: 4.2rem; font-weight: 900; letter-spacing: -0.04em; 
             text-transform: uppercase; margin-bottom: 15px; line-height: 1.0;
-            background: linear-gradient(180deg, #ffffff 30%, #527191 100%);
+            background: linear-gradient(180deg, #ffffff 40%, #688cb0 100%);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
 
         .tagline { 
-            color: #ffffff; font-size: 1.4rem; font-weight: 700; 
-            text-transform: uppercase; letter-spacing: 0.3em; margin-bottom: 30px;
-            word-spacing: 0.1em;
+            color: var(--cyber-cyan); font-size: 1.5rem; font-weight: 700; 
+            text-transform: uppercase; letter-spacing: 0.35em; margin-bottom: 35px;
+            text-shadow: 0 0 15px rgba(0, 243, 255, 0.4);
         }
 
-        .intro-text { 
-            color: var(--text-gray); font-size: 1.25rem; max-width: 850px; 
-            margin: 0 auto; line-height: 1.7; text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        .intro-block { 
+            color: var(--text-white); font-size: 1.3rem; max-width: 950px; 
+            margin: 0 auto; line-height: 1.8; text-shadow: 0 2px 8px rgba(0,0,0,0.8);
         }
 
-        /* INTERACTIVE GRID SHOWCASE */
-        .grid-section { 
+        /* PRIMARY CORE ARCHITECTURE GRID */
+        .grid-primary { 
             display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 60px; 
         }
 
         .card { 
-            background: linear-gradient(145deg, rgba(14, 22, 45, 0.95) 0%, rgba(7, 11, 22, 0.95) 100%); 
-            border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 12px; 
-            padding: 45px; position: relative; overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .card::before {
-            content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 4px;
-            background: linear-gradient(90deg, var(--cyber-cyan), var(--cyber-blue));
-            opacity: 0.7; transition: opacity 0.3s;
+            background: var(--bg-card); border: 2px solid rgba(0, 243, 255, 0.15); border-radius: 12px; 
+            padding: 45px; position: relative; overflow: hidden; backdrop-filter: blur(10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.7); transition: all 0.3s ease;
         }
 
         .card:hover {
-            border-color: rgba(0, 243, 255, 0.5);
-            box-shadow: 0 0 40px rgba(0, 243, 255, 0.25);
-            transform: translateY(-5px);
+            border-color: var(--cyber-cyan); box-shadow: 0 0 40px rgba(0, 243, 255, 0.35);
+            transform: translateY(-4px);
         }
-        .card:hover::before { opacity: 1; background: linear-gradient(90deg, var(--cyber-magenta), var(--cyber-cyan)); }
 
         h2 { 
             color: #ffffff; font-size: 1.8rem; font-weight: 900; margin-bottom: 25px; 
-            text-transform: uppercase; letter-spacing: -0.02em; display: flex; align-items: center;
+            text-transform: uppercase; border-left: 5px solid var(--cyber-cyan); padding-left: 15px;
         }
 
-        .metric-badge {
-            font-family: monospace; font-size: 0.8rem; color: var(--cyber-cyan);
-            border: 1px solid rgba(0,243,255,0.3); background: rgba(0,243,255,0.05);
-            padding: 4px 10px; border-radius: 4px; margin-bottom: 20px; display: inline-block;
+        .specs-badge {
+            font-family: monospace; font-size: 0.85rem; color: var(--cyber-cyan);
+            border: 1px solid rgba(0,243,255,0.4); background: rgba(0,243,255,0.08);
+            padding: 4px 12px; border-radius: 4px; margin-bottom: 25px; display: inline-block;
         }
 
         ul { list-style-type: none; margin-bottom: 35px; }
-        li { 
-            margin-bottom: 18px; color: #e1e7ef; font-size: 1.1rem; 
-            position: relative; padding-left: 30px; 
-        }
-        li strong { color: var(--cyber-cyan); font-weight: 700; }
+        li { margin-bottom: 18px; color: #f1f5f9; font-size: 1.1rem; position: relative; padding-left: 30px; }
+        li strong { color: var(--cyber-cyan); }
         li::before { 
-            content: ""; position: absolute; left: 0; top: 8px; width: 12px; height: 2px;
-            background: var(--cyber-cyan); box-shadow: 0 0 8px var(--cyber-cyan);
+            content: "➔"; position: absolute; left: 0; top: 0; color: var(--cyber-cyan);
+            text-shadow: 0 0 8px var(--cyber-cyan);
         }
 
-        /* CAD ANIMATED GRAPHICS WINDOWS */
-        .graphics-box {
-            width: 100%; background: #03060f; border: 2px solid rgba(255,255,255,0.03);
-            border-radius: 8px; padding: 25px; position: relative;
-            box-shadow: inset 0 0 30px rgba(0,0,0,0.8);
+        /* EXPANDED TECHNICAL DATA CARDS (COMPREHENSIVE BOTTOM SECTIONS) */
+        .expanded-grid {
+            display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 30px; margin-bottom: 60px;
         }
 
-        /* PREMIUM METALLIC IP SHIELD */
-        .ip-vault-banner { 
-            background: linear-gradient(135deg, #0e162d 0%, #050813 100%);
+        .data-panel {
+            background: rgba(4, 8, 20, 0.95); border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px; padding: 30px; box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            transition: border-color 0.3s;
+        }
+        .data-panel:hover { border-color: var(--cyber-magenta); }
+        .data-panel h4 { color: var(--cyber-magenta); font-size: 1.2rem; font-weight: 800; text-transform: uppercase; margin-bottom: 15px; }
+        .data-panel p { color: var(--text-muted); font-size: 1rem; line-height: 1.6; }
+
+        /* METALLIC INTELLECTUAL PROPERTY SHIELD */
+        .ip-shield-banner { 
+            background: linear-gradient(135deg, #0f1833 0%, #030612 100%);
             border: 2px solid var(--text-gold); border-radius: 12px; 
             padding: 50px 40px; text-align: center; margin-bottom: 60px; 
-            position: relative; box-shadow: 0 0 40px rgba(212, 175, 55, 0.15);
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.2);
         }
-        .ip-vault-banner h3 { 
-            color: var(--text-gold); font-size: 1.6rem; text-transform: uppercase;
-            letter-spacing: 0.15em; margin-bottom: 15px; font-weight: 900;
+        .ip-shield-banner h3 { 
+            color: var(--text-gold); font-size: 1.8rem; text-transform: uppercase;
+            letter-spacing: 0.15em; margin-bottom: 20px; font-weight: 900;
         }
-        .ip-vault-banner p { 
-            color: #ffffff; font-size: 1.2rem; max-width: 950px; margin: 0 auto; line-height: 1.7;
-        }
+        .ip-shield-banner p { color: #ffffff; font-size: 1.2rem; max-width: 1000px; margin: 0 auto; line-height: 1.7; }
 
-        /* TRANSACTION CONTROL PORTAL */
+        /* TRANSACTION ACCESS CONTROL */
         .form-section { 
-            background: linear-gradient(180deg, rgba(10,15,29,0.9) 0%, rgba(2,4,10,0.95) 100%); 
-            border: 2px solid rgba(255, 255, 255, 0.05); border-radius: 16px; 
-            padding: 60px; max-width: 800px; margin: 0 auto; text-align: center;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+            background: rgba(6, 11, 25, 0.95); border: 2px solid rgba(255, 255, 255, 0.08); border-radius: 16px; 
+            padding: 60px; max-width: 850px; margin: 0 auto; text-align: center;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.8);
         }
-        .form-section h2 { justify-content: center; font-size: 2rem; margin-bottom: 15px; }
+        .form-section h2 { justify-content: center; font-size: 2.2rem; margin-bottom: 20px; border: none; padding: 0; }
 
-        .form-group { margin-bottom: 30px; text-align: left; }
-        label { 
-            display: block; color: var(--cyber-cyan); font-size: 0.85rem; 
-            font-weight: 800; text-transform: uppercase; margin-bottom: 10px; letter-spacing: 0.15em; 
-        }
+        .form-group { margin-bottom: 25px; text-align: left; }
+        label { display: block; color: var(--cyber-cyan); font-size: 0.85rem; font-weight: 800; text-transform: uppercase; margin-bottom: 10px; letter-spacing: 0.15em; }
         input { 
-            width: 100%; padding: 16px; background-color: #03060f; 
-            border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 6px; 
-            color: #ffffff; font-size: 1.1rem; transition: all 0.3s;
+            width: 100%; padding: 16px; background-color: #03060f; border: 1px solid rgba(255, 255, 255, 0.15); 
+            border-radius: 6px; color: #ffffff; font-size: 1.1rem; transition: all 0.3s;
         }
         input:focus { 
-            border-color: var(--cyber-cyan); outline: none; 
-            box-shadow: 0 0 15px rgba(0, 243, 255, 0.4); background-color: #050b1a;
+            border-color: var(--cyber-cyan); outline: none; box-shadow: 0 0 15px rgba(0, 243, 255, 0.5); background-color: #061126;
         }
 
         button { 
             background: linear-gradient(90deg, var(--cyber-cyan) 0%, var(--cyber-blue) 100%);
-            color: #02040a; border: none; padding: 20px 40px; 
-            font-size: 1.1rem; font-weight: 900; text-transform: uppercase; 
-            letter-spacing: 0.15em; cursor: pointer; border-radius: 6px; 
-            width: 100%; box-shadow: 0 6px 25px rgba(0, 243, 255, 0.4);
-            transition: all 0.3s ease;
+            color: #02050d; border: none; padding: 20px 40px; font-size: 1.1rem; font-weight: 900; 
+            text-transform: uppercase; letter-spacing: 0.15em; cursor: pointer; border-radius: 6px; 
+            width: 100%; box-shadow: 0 6px 25px rgba(0, 243, 255, 0.4); transition: all 0.3s ease;
         }
-        button:hover { 
-            box-shadow: 0 0 40px var(--cyber-cyan);
-            transform: scale(1.01);
-        }
+        button:hover { box-shadow: 0 0 40px var(--cyber-cyan); transform: scale(1.01); }
 
-        footer { 
-            text-align: center; color: #495a6f; font-size: 0.9rem; 
-            margin-top: 120px; border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: 40px; 
-        }
+        footer { text-align: center; color: #536782; font-size: 0.9rem; margin-top: 120px; border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: 40px; }
 
-        /* CAPCYBER ANIMATION ENGINES */
-        @keyframes blink { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
-        @keyframes pulse-border { 0%, 100% { box-shadow: 0 0 10px rgba(0,243,255,0.2); } 50% { box-shadow: 0 0 25px rgba(0,243,255,0.5); } }
-
-        @media (max-width: 900px) {
-            .grid-section { grid-template-columns: 1fr; }
-            h1 { font-size: 2.8rem; }
-        }
+        @keyframes beacon { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
     </style>
 </head>
 <body>
-    <div class="glow-orb-1"></div>
-    <div class="glow-orb-2"></div>
+
+    <!-- HIGH-VISIBILITY TECH MATRIX LAYER -->
+    <div class="matrix-grid"></div>
+    <div class="cursor-glow" id="radarGlow"></div>
 
     <div class="container">
+        <!-- HERO BLOCK -->
         <header>
-            <div class="live-pulse">
-                <div class="pulse-dot"></div>
-                <span>Active USPTO Priority Anchor Locked</span>
+            <div class="status-node">
+                <div class="status-dot"></div>
+                <span>FEDERAL PATENT REPOSITORIES ENFORCED</span>
             </div>
             <h1>FutureSurface Technologies</h1>
-            <div class="tagline">Active Attenuation Infrastructure</div>
-            <p class="intro-text">
-                Engineering high-leverage structural systems that dynamically transform target boundaries from rigid load-bearing states to energy-absorbing configurations in sub-millisecond windows. Operating via decentralized logic chips embedded at the cell layer, our systems permanently eliminate communication latency, mitigating catastrophic kinetic loads across commercial amusement spaces and industrial matrices.
+            <div class="tagline">Active Attenuation Systems</div>
+            <p class="intro-block">
+                Engineering high-leverage structural systems that dynamically transform boundary elements from rigid load-bearing states to energy-absorbing configurations in sub-millisecond windows. Operating via decentralized logic microchips embedded directly at the cell layer, our systems permanently eliminate data communication latency, mitigating high-velocity kinetic loads across global enterprise amusement infrastructure and industrial matrices.
+            </p>
+        </header>
+
+        <!-- PRIMARY SPECIFICATIONS -->
+        <section class="grid-primary">
+            <div class="card">
+                <div class="specs-badge">CELL MODULATION RATE // &lt; 5.0ms DELAY LAYER</div>
+                <h2>Cellular Breakaway Grids</h2>
+                <ul>
