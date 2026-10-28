@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FutureSurface | Active Attenuation Infrastructure</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background-color: #0b0c10; color: #c5a059; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; padding: 20px; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 40px 20px; }
+        header { border-bottom: 2px solid #1f2833; padding-bottom: 40px; margin-bottom: 60px; text-align: center; }
+        h1 { color: #ffffff; font-size: 2.8rem; font-weight: 800; letter-spacing: -0.05em; text-transform: uppercase; margin-bottom: 10px; }
+        .tagline { color: #66fcf1; font-size: 1.2rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; }
+        .intro-text { color: #f5f5f5; font-size: 1.15rem; margin-top: 25px; text-align: justify; max-width: 900px; margin-left: auto; margin-right: auto; }
+        .grid-section { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 60px; }
+        .card { background-color: #1f2833; border: 1px solid #45a29e; border-radius: 4px; padding: 30px; }
+        h2 { color: #ffffff; font-size: 1.4rem; font-weight: 700; margin-bottom: 20px; text-transform: uppercase; letter-spacing: -0.02em; border-left: 4px solid #66fcf1; padding-left: 12px; }
+        ul { list-style-type: none; }
+        li { margin-bottom: 15px; color: #f5f5f5; font-size: 1rem; position: relative; padding-left: 20px; }
+        li::before { content: "▪"; color: #66fcf1; position: absolute; left: 0; top: 0; }
+        .video-placeholder { background-color: #0b0c10; border: 1px dashed #45a29e; height: 240px; margin-top: 20px; display: flex; align-items: center; justify-content: center; color: #66fcf1; font-weight: 600; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 0.05em; }
+        .ip-banner { background-color: #112233; border: 2px solid #66fcf1; border-radius: 4px; padding: 30px; text-align: center; margin-bottom: 60px; }
+        .ip-banner h2 { border: none; padding: 0; display: inline-block; margin-bottom: 15px; }
+        .ip-banner p { color: #ffffff; font-size: 1.1rem; max-width: 800px; margin: 0 auto; }
+        .form-section { background-color: #1f2833; border: 1px solid #c5a059; border-radius: 4px; padding: 40px; max-width: 600px; margin: 0 auto; text-align: center; }
+        .form-section p { color: #ffffff; margin-bottom: 25px; font-size: 1.05rem; }
+        .form-group { margin-bottom: 20px; text-align: left; }
+        label { display: block; color: #66fcf1; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; margin-bottom: 5px; letter-spacing: 0.05em; }
+        input { width: 100%; padding: 12px; background-color: #0b0c10; border: 1px solid #45a29e; border-radius: 2px; color: #ffffff; font-size: 1rem; }
+        input:focus { border-color: #c5a059; outline: none; }
+        button { background-color: #c5a059; color: #0b0c10; border: none; padding: 15px 30px; font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; cursor: pointer; border-radius: 2px; margin-top: 10px; width: 100%; transition: background-color 0.2s ease; }
+        button:hover { background-color: #ffffff; }
+        footer { text-align: center; color: #45a29e; font-size: 0.85rem; margin-top: 80px; border-top: 1px solid #1f2833; padding-top: 30px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>FutureSurface</h1>
+            <div class="tagline">Decentralized Active Attenuation Infrastructure</div>
+            <p class="intro-text">
+                FutureSurface develops intelligent, multi-layered structural systems engineered to transform surface boundaries from load-bearing rigid states to low-resistance energy-attenuating configurations in sub-millisecond windows. By deploying decentralized edge computing microprocessors directly within independent spatial layers, our architectures eliminate communication delay, mitigating high-velocity kinetic impacts across automated networks, athletic spaces, and structural matrices.
+            </p>
+        </header>
+
+        <section class="grid-section">
+            <div class="card">
+                <h2>1. Cellular Breakaway Configurations</h2>
+                <ul>
+                    <li>Decentralized Edge Processing: Self-contained module cells running native micro-logic threat loops to keep response latency below 5 milliseconds.</li>
+                    <li>Synchronized Fasteners: Electronic solenoids executing localized state changes, retracting dynamic horizontal interlocking connection pins on demand.</li>
+                    <li>Zoned Deflection Perimeter: Single affected tiles drop vertically to capture transient kinetic loads while surrounding cells retain full rigid load capacities.</li>
+                </ul>
+                <div class="video-placeholder">Simulation 01: Modular Cell Detachment</div>
+            </div>
+
+            <div class="card">
+                <h2>2. Fluidic & Variable Propulsion Sheets</h2>
+                <ul>
+                    <li>Comprehensive Flowable Substance Matrix: Internal bladders charged with responsive phase-changing fluids, rheological compounds, or gels.</li>
+                    <li>Field-Free Levitation Sub-Structures: Suspension of continuous surface layers via electromagnetic, diamagnetic, or acoustic elevation mechanics.</li>
+                    <li>Tension-Wire Pulley Arrays: Integrated subsurface winch networks managing canvas displacement to optimize propulsion and cushion transient trajectories.</li>
+                </ul>
+                <div class="video-placeholder">Simulation 02: Dynamic Subsurface Winch Spooling</div>
+            </div>
+        </section>
+
+        <section class="ip-banner">
+            <h2>Protected Intellectual Property Portfolio</h2>
+            <p>
+                Our technological architecture is fully anchored within the United States Patent and Trademark Office. The baseline innovations are securely backed by published federal utility prior art data, with optimized advancements and sub-millisecond logic loops currently maintained under active Patent Pending status.
+            </p>
+        </section>
+
+        <section class="form-section">
+            <h2>Enterprise Portals & Joint Development</h2>
+            <p>Access to technical specifications, architectural schematics, and laboratory drop-test reports requires an active Mutual Non-Disclosure Agreement (NDA).</p>
+            
+                <div class="form-group">
+                    <label for="name">Authorized Representative</label>
+                    <input type="text" id="name" required placeholder="Full Legal Name">
+                </div>
+                <div class="form-group">
+                    <label for="corporate">Corporate Entity</label>
+                    <input type="text" id="corporate" required placeholder="Company or Institution">
+                </div>
+                <div class="form-group">
+                    <label for="email">Secure Email Node</label>
+                    <input type="email" id="email" required placeholder="representative@company.com">
+                </div>
+                <button type="submit">Request Secure Portfolio Access</button>
+            </form>
+        </section>
+
+        <footer>
+            &copy; 2026 FutureSurface Technologies. All Rights Reserved. Private Pro Pro Se Portfolio Archive. Waltham, MA.
+        </footer>
+    </div>
+</body>
+</html>
