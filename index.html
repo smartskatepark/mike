@@ -4,203 +4,82 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FutureSurface Technologies | Active Attenuation Matrix</title>
-    <!-- Premium Fonts -->
-    <link rel="preconnect" href="https://googleapis.com">
-    <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Orbitron:wght@700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
     <style>
         :root {
-            --bg-main: #020308;
+            --bg-main: #02050d;
+            --bg-card: rgba(8, 14, 30, 0.95);
             --cyber-cyan: #00f3ff;
-            --cyber-blue: #0055ff;
+            --cyber-blue: #0066ff;
             --cyber-magenta: #ff0055;
-            --gold: #d4af37;
-            --glass-card: rgba(10, 16, 32, 0.65);
-            --border-glow: rgba(0, 243, 255, 0.25);
+            --text-white: #ffffff;
+            --text-muted: #94a9c4;
         }
-
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        
-        body { 
-            background-color: var(--bg-main); 
-            color: #ffffff; 
-            font-family: 'Plus Jakarta Sans', sans-serif; 
-            line-height: 1.6; 
-            overflow-x: hidden;
-            position: relative;
-            min-height: 100vh;
+        body { background-color: var(--bg-main); color: var(--text-white); font-family: sans-serif; min-height: 100vh; overflow-x: hidden; }
+        #interactiveGridCanvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; background-color: var(--bg-main); pointer-events: none; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 60px 20px; position: relative; }
+        header { text-align: center; padding: 60px 40px; background: rgba(6, 11, 25, 0.85); border: 2px solid var(--cyber-cyan); border-radius: 12px; margin-bottom: 60px; }
+        h1 { font-size: 3.5rem; text-transform: uppercase; margin-bottom: 15px; }
+        .tagline { color: var(--cyber-cyan); font-size: 1.3rem; font-weight: 700; text-transform: uppercase; margin-bottom: 30px; }
+        .intro-block { color: var(--text-muted); font-size: 1.15rem; max-width: 900px; margin: 0 auto; }
+        .grid-primary { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 60px; }
+        .card { background: var(--bg-card); border: 1px solid rgba(0, 243, 255, 0.2); border-radius: 12px; padding: 45px; }
+        h2 { color: #ffffff; font-size: 1.5rem; margin-bottom: 25px; border-left: 4px solid var(--cyber-cyan); padding-left: 15px; }
+        ul { list-style-type: none; } li { margin-bottom: 15px; color: #f1f5f9; padding-left: 25px; position: relative; }
+        li::before { content: "▪"; position: absolute; left: 0; color: var(--cyber-cyan); }
+        .expanded-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 30px; margin-bottom: 60px; }
+        .data-panel { background: rgba(4, 8, 20, 0.95); border: 1px solid rgba(0, 243, 255, 0.2); border-radius: 8px; padding: 30px; }
+        .data-panel h4 { color: var(--cyber-magenta); text-transform: uppercase; margin-bottom: 12px; }
+        .data-panel p { color: var(--text-muted); font-size: 0.95rem; }
+        footer { text-align: center; color: #536782; font-size: 0.85rem; margin-top: 100px; padding-top: 40px; }
+    </style>
+</head>
+<body>
+    <canvas id="interactiveGridCanvas"></canvas>
+    <div class="container">
+        <header>
+            <h1>FutureSurface Technologies</h1>
+            <div class="tagline">Active Attenuation Systems</div>
+            <p class="intro-block">Engineering high-leverage structural safety systems that dynamically transform boundary elements...</p>
+        </header>
+        <section class="grid-primary">
+            <div class="card"><h2>Cellular Breakaway Grids</h2><ul><li><strong>Decentralized Logic:</strong> Instant threat isolation.</li></ul></div>
+            <div class="card"><h2>Dynamic Subsurface Arrays</h2><ul><li><strong>Fluid Attenuation:</strong> Swallows rebound velocity.</li></ul></div>
+        </section>
+        <section class="expanded-grid">
+            <div class="data-panel"><h4>1. Enterprise Rollout</h4><p>Commercial park safety integration.</p></div>
+            <div class="data-panel"><h4>2. Academic Research</h4><p>University engineering lab development.</p></div>
+            <div class="data-panel"><h4>3. Hardware Framework</h4><p>Pneumatic aperture flow control.</p></div>
+        </section>
+        <footer>&copy; 2026 FutureSurface Technologies. All Rights Reserved.</footer>
+    </div>
+    <script>
+        const canvas = document.getElementById('interactiveGridCanvas');
+        const ctx = canvas.getContext('2d');
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
+        const mouse = { x: null, y: null, radius: 220 };
+        window.addEventListener('resize', () => { width = canvas.width = window.innerWidth; height = canvas.height = window.innerHeight; });
+        window.addEventListener('mousemove', (e) => { mouse.x = e.clientX; mouse.y = e.clientY; });
+        window.addEventListener('mouseleave', () => { mouse.x = null; mouse.y = null; });
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+            ctx.strokeStyle = 'rgba(0, 243, 255, 0.25)';
+            for (let y = 0; y < height; y += 45) {
+                ctx.beginPath();
+                for (let x = 0; x < width; x += 15) {
+                    let dy = 0;
+                    if (mouse.x !== null && mouse.y !== null) {
+                        const dist = Math.hypot(x - mouse.x, y - mouse.y);
+                        if (dist < mouse.radius) dy = (y - mouse.y) * -0.18 * ((mouse.radius - dist) / mouse.radius);
+                    }
+                    x === 0 ? ctx.moveTo(x, y + dy) : ctx.lineTo(x, y + dy);
+                }
+                ctx.stroke();
+            }
+            requestAnimationFrame(animate);
         }
-
-        /* 3D PARTICLE MATRIX ENGINE CANVAS */
-        #particleCanvas {
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1;
-            background: radial-gradient(circle at 50% 50%, #060d1f 0%, #010307 100%);
-            pointer-events: none;
-        }
-
-        .container { max-width: 1200px; margin: 0 auto; padding: 80px 20px; position: relative; }
-
-        /* HYPER-EXPENSIVE INTELLECTUAL PORTAL HEADER */
-        header { 
-            text-align: center; padding: 80px 40px;
-            background: rgba(4, 8, 16, 0.7); 
-            border: 1px solid rgba(0, 243, 255, 0.4); 
-            border-radius: 24px;
-            margin-bottom: 80px; 
-            backdrop-filter: blur(20px);
-            box-shadow: 0 0 60px rgba(0, 243, 255, 0.15), inset 0 0 30px rgba(0, 243, 255, 0.05);
-            position: relative;
-            overflow: hidden;
-        }
-
-        header::before {
-            content: ''; position: absolute; top: 0; left: -50%; width: 200%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 243, 255, 0.05), transparent);
-            transform: rotate(30deg); animation: laser-sweep 6s infinite linear;
-        }
-
-        .secure-badge {
-            display: inline-flex; align-items: center; gap: 10px;
-            padding: 8px 20px; background: rgba(0, 243, 255, 0.08);
-            border: 1px solid var(--cyber-cyan); border-radius: 40px;
-            color: var(--cyber-cyan); font-family: 'Orbitron', sans-serif;
-            font-size: 0.75rem; font-weight: 700; letter-spacing: 0.25em;
-            text-transform: uppercase; margin-bottom: 35px;
-            box-shadow: 0 0 20px rgba(0, 243, 255, 0.1);
-        }
-
-        .secure-dot {
-            width: 8px; height: 8px; background-color: var(--cyber-cyan); border-radius: 50%;
-            box-shadow: 0 0 12px var(--cyber-cyan); animation: beacon-glow 2s infinite ease-in-out;
-        }
-
-        h1 { 
-            font-family: 'Orbitron', sans-serif; font-size: 4.5rem; font-weight: 900; 
-            letter-spacing: -0.02em; text-transform: uppercase; margin-bottom: 20px; line-height: 1.0;
-            background: linear-gradient(135deg, #ffffff 30%, #6187ad 100%);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-        }
-
-        .tagline { 
-            color: var(--cyber-cyan); font-family: 'Orbitron', sans-serif; font-size: 1.4rem; 
-            font-weight: 700; text-transform: uppercase; letter-spacing: 0.4em; margin-bottom: 40px;
-            text-shadow: 0 0 20px rgba(0, 243, 255, 0.4);
-        }
-
-        .intro-block { 
-            color: #b0c4de; font-size: 1.3rem; max-width: 900px; margin: 0 auto; line-height: 1.8;
-            font-weight: 500;
-        }
-
-        /* PREMIUM DUAL SHOWCASE CARDS */
-        .grid-primary { 
-            display: grid; grid-template-columns: 1fr 1fr; gap: 50px; margin-bottom: 80px; 
-        }
-
-        .card { 
-            background: var(--glass-card); border: 1px solid var(--border-glow); border-radius: 20px; 
-            padding: 50px; position: relative; overflow: hidden; backdrop-filter: blur(25px);
-            box-shadow: 0 30px 60px rgba(0,0,0,0.8); transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .card::after {
-            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
-            background: radial-gradient(circle, rgba(0,243,255,0.08) 0%, transparent 60%);
-            opacity: 0; transition: opacity 0.5s; pointer-events: none;
-        }
-
-        .card:hover {
-            border-color: var(--cyber-cyan); box-shadow: 0 0 50px rgba(0, 243, 255, 0.25);
-            transform: translateY(-8px);
-        }
-        .card:hover::after { opacity: 1; }
-
-        h2 { 
-            font-family: 'Orbitron', sans-serif; color: #ffffff; font-size: 1.8rem; font-weight: 700; 
-            margin-bottom: 30px; text-transform: uppercase; display: flex; align-items: center; gap: 15px;
-        }
-
-        h2::before {
-            content: ""; display: inline-block; width: 6px; height: 26px; background: var(--cyber-cyan);
-            box-shadow: 0 0 15px var(--cyber-cyan); border-radius: 4px;
-        }
-
-        .specs-badge {
-            font-family: 'Orbitron', sans-serif; font-size: 0.8rem; color: var(--cyber-cyan);
-            border: 1px solid rgba(0,243,255,0.4); background: rgba(0,243,255,0.08);
-            padding: 6px 14px; border-radius: 6px; margin-bottom: 30px; display: inline-block;
-            letter-spacing: 0.1em;
-        }
-
-        ul { list-style-type: none; }
-        li { margin-bottom: 22px; color: #e2e8f0; font-size: 1.1rem; position: relative; padding-left: 35px; }
-        li strong { color: var(--cyber-cyan); font-weight: 700; }
-        li::before { 
-            content: "✦"; position: absolute; left: 0; top: 0; color: var(--cyber-cyan);
-            font-size: 1.2rem; text-shadow: 0 0 10px var(--cyber-cyan);
-        }
-
-        /* EXPANDED SYSTEM DATA ARCHITECTURES */
-        .expanded-grid {
-            display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 40px; margin-bottom: 80px;
-        }
-
-        .data-panel {
-            background: rgba(6, 11, 26, 0.9); border: 1px solid rgba(0, 243, 255, 0.15);
-            border-radius: 12px; padding: 40px; box-shadow: 0 20px 45px rgba(0,0,0,0.6);
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); backdrop-filter: blur(15px);
-        }
-        .data-panel:hover { 
-            border-color: var(--cyber-magenta); box-shadow: 0 0 30px rgba(255,0,85,0.2);
-            transform: translateY(-4px);
-        }
-        .data-panel h4 { 
-            font-family: 'Orbitron', sans-serif; color: var(--cyber-magenta); font-size: 1.2rem; 
-            font-weight: 900; text-transform: uppercase; margin-bottom: 15px; letter-spacing: 1px;
-        }
-        .data-panel p { color: #a0aec0; font-size: 1rem; line-height: 1.7; }
-
-        /* METALLIC GOLD INTELLECTUAL VAULT SHIELD */
-        .ip-shield-banner { 
-            background: linear-gradient(135deg, #121b36 0%, #030612 100%);
-            border: 2px solid var(--gold); border-radius: 16px; 
-            padding: 60px 40px; text-align: center; margin-bottom: 80px; 
-            box-shadow: 0 0 50px rgba(212, 175, 55, 0.2), inset 0 0 20px rgba(212, 175, 55, 0.05);
-            position: relative;
-        }
-        .ip-shield-banner h3 { 
-            font-family: 'Orbitron', sans-serif; color: var(--gold); font-size: 1.8rem; text-transform: uppercase;
-            letter-spacing: 0.2em; margin-bottom: 20px; font-weight: 900;
-            text-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
-        }
-        .ip-shield-banner p { color: #ffffff; font-size: 1.2rem; max-width: 1000px; margin: 0 auto; line-height: 1.8; font-weight: 500; }
-
-        /* HIGH-LEVEL INVESTOR DATA ROOM FORM */
-        .form-section { 
-            background: rgba(4, 8, 18, 0.9); border: 1px solid rgba(0, 243, 255, 0.2); border-radius: 24px; 
-            padding: 60px; max-width: 900px; margin: 0 auto; text-align: center;
-            box-shadow: 0 40px 80px rgba(0,0,0,0.8); backdrop-filter: blur(30px);
-        }
-        .form-section h2 { font-family: 'Orbitron', sans-serif; justify-content: center; font-size: 2.2rem; margin-bottom: 20px; border: none; padding: 0; }
-        .form-section p { color: #a0aec0; margin-bottom: 45px; font-size: 1.15rem; max-width: 700px; margin-left: auto; margin-right: auto; }
-
-        .form-group { margin-bottom: 30px; text-align: left; }
-        label { display: block; color: var(--cyber-cyan); font-family: 'Orbitron', sans-serif; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; margin-bottom: 12px; letter-spacing: 0.15em; }
-        input { 
-            width: 100%; padding: 18px; background-color: #03060f; border: 1px solid rgba(255, 255, 255, 0.15); 
-            border-radius: 8px; color: #ffffff; font-size: 1.1rem; transition: all 0.3s;
-            font-family: inherit;
-        }
-        input:focus { 
-            border-color: var(--cyber-cyan); outline: none; box-shadow: 0 0 20px rgba(0, 243, 255, 0.4); background-color: #061229;
-        }
-
-        button { 
-            background: linear-gradient(90deg, var(--cyber-cyan) 0%, var(--cyber-blue) 100%);
-            color: #02050d; border: none; padding: 22px 40px; font-family: 'Orbitron', sans-serif; font-size: 1.2rem; font-weight: 900; 
-            text-transform: uppercase; letter-spacing: 0.2em; cursor: pointer; border-radius: 8px; 
-            width: 100%; box-shadow: 0 8px 30px rgba(0, 243, 255, 0.3); transition: all 0.4s ease;
-        }
-        button:hover { box-shadow: 0 0 50px var(--cyber-cyan); transform: translateY(-2px); }
-
+        animate();
+    </script>
+</body>
+</html>
