@@ -3,14 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FutureSurface Technologies</title>
+    <title>FutureSurface Technologies | Active Attenuation Matrix</title>
+    <!-- Premium Fonts -->
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Orbitron:wght@700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --bg-main: #02040a;
+            --bg-main: #020308;
             --cyber-cyan: #00f3ff;
-            --text-muted: #8fa0b5;
-            --glass-menu: rgba(4, 8, 16, 0.85);
-            --card-bg: rgba(10, 16, 32, 0.8);
+            --cyber-blue: #0055ff;
+            --cyber-magenta: #ff0055;
+            --gold: #d4af37;
+            --glass-card: rgba(10, 16, 32, 0.65);
+            --border-glow: rgba(0, 243, 255, 0.25);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -18,132 +25,182 @@
         body { 
             background-color: var(--bg-main); 
             color: #ffffff; 
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif; 
             line-height: 1.6; 
             overflow-x: hidden;
             position: relative;
             min-height: 100vh;
-            padding-top: 100px; /* Leaves clean room for fixed Apple/Tesla header style */
         }
 
-        /* LIVING 3D PARTICLE MATRIX CANVAS - HIGH VISIBILITY DEFAULTS */
-        #interactiveGridCanvas {
+        /* 3D PARTICLE MATRIX ENGINE CANVAS */
+        #particleCanvas {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1;
-            background-color: var(--bg-main); pointer-events: none;
+            background: radial-gradient(circle at 50% 50%, #060d1f 0%, #010307 100%);
+            pointer-events: none;
         }
 
-        /* FIXED TOP NAV BAR (APPLE / TESLA LAYOUT STRATEGY) */
-        .top-nav {
-            position: fixed; top: 0; left: 0; width: 100%; height: 70px;
-            background: var(--glass-menu); border-bottom: 1px solid rgba(0, 243, 255, 0.25);
-            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-            z-index: 1000; display: flex; align-items: center; justify-content: space-between;
-            padding: 0 40px; box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        .container { max-width: 1200px; margin: 0 auto; padding: 80px 20px; position: relative; }
+
+        /* HYPER-EXPENSIVE INTELLECTUAL PORTAL HEADER */
+        header { 
+            text-align: center; padding: 80px 40px;
+            background: rgba(4, 8, 16, 0.7); 
+            border: 1px solid rgba(0, 243, 255, 0.4); 
+            border-radius: 24px;
+            margin-bottom: 80px; 
+            backdrop-filter: blur(20px);
+            box-shadow: 0 0 60px rgba(0, 243, 255, 0.15), inset 0 0 30px rgba(0, 243, 255, 0.05);
+            position: relative;
+            overflow: hidden;
         }
 
-        .logo-area { display: flex; align-items: center; gap: 15px; }
-        
-        /* PLACEMENT SLOT FOR YOUR LOGO IMAGE FILE */
-        .logo-img { max-height: 38px; width: auto; display: block; }
-        
-        .logo-text { 
-            font-size: 1.25rem; font-weight: 800; letter-spacing: 2px; 
-            text-transform: uppercase; color: #ffffff; 
+        header::before {
+            content: ''; position: absolute; top: 0; left: -50%; width: 200%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 243, 255, 0.05), transparent);
+            transform: rotate(30deg); animation: laser-sweep 6s infinite linear;
         }
 
-        .nav-status {
-            font-family: monospace; font-size: 0.75rem; color: var(--cyber-cyan);
-            border: 1px solid rgba(0, 243, 255, 0.3); background: rgba(0, 243, 255, 0.05);
-            padding: 4px 12px; border-radius: 4px; text-transform: uppercase; letter-spacing: 1px;
+        .secure-badge {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 8px 20px; background: rgba(0, 243, 255, 0.08);
+            border: 1px solid var(--cyber-cyan); border-radius: 40px;
+            color: var(--cyber-cyan); font-family: 'Orbitron', sans-serif;
+            font-size: 0.75rem; font-weight: 700; letter-spacing: 0.25em;
+            text-transform: uppercase; margin-bottom: 35px;
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.1);
         }
 
-        .container { max-width: 1100px; margin: 0 auto; padding: 40px 20px; position: relative; }
-
-        /* THE PRODUCT DISPLAY CONTAINER */
-        .hero-panel { 
-            text-align: center; padding: 60px 40px; background: var(--card-bg); 
-            border: 1px solid rgba(0, 243, 255, 0.2); border-radius: 12px;
-            margin-bottom: 50px; backdrop-filter: blur(15px); box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        .secure-dot {
+            width: 8px; height: 8px; background-color: var(--cyber-cyan); border-radius: 50%;
+            box-shadow: 0 0 12px var(--cyber-cyan); animation: beacon-glow 2s infinite ease-in-out;
         }
-        h1 { font-size: 3rem; text-transform: uppercase; margin-bottom: 15px; font-weight: 900; letter-spacing: -1px; }
-        .tagline { color: var(--cyber-cyan); font-size: 1.25rem; font-weight: 700; text-transform: uppercase; letter-spacing: 4px; margin-bottom: 25px; }
-        .intro-text { color: var(--text-muted); font-size: 1.15rem; max-width: 850px; margin: 0 auto; }
 
-        /* MULTI-GRID SPECIFICATION MODULES */
-        .grid-primary { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 50px; }
-        .card { background: var(--card-bg); border: 1px solid rgba(0, 243, 255, 0.15); border-radius: 12px; padding: 45px; backdrop-filter: blur(15px); }
-        h2 { color: #ffffff; font-size: 1.5rem; margin-bottom: 20px; text-transform: uppercase; border-left: 4px solid var(--cyber-cyan); padding-left: 15px; }
-        ul { list-style-type: none; } li { margin-bottom: 15px; color: #f1f5f9; padding-left: 25px; position: relative; }
-        li::before { content: "▪"; position: absolute; left: 0; color: var(--cyber-cyan); font-size: 1.2rem; }
+        h1 { 
+            font-family: 'Orbitron', sans-serif; font-size: 4.5rem; font-weight: 900; 
+            letter-spacing: -0.02em; text-transform: uppercase; margin-bottom: 20px; line-height: 1.0;
+            background: linear-gradient(135deg, #ffffff 30%, #6187ad 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
 
-        /* EXPANDED DATA GRIDS */
-        .expanded-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 30px; margin-bottom: 50px; }
-        .data-panel { background: rgba(4, 8, 20, 0.95); border: 1px solid rgba(0, 243, 255, 0.15); border-radius: 8px; padding: 30px; backdrop-filter: blur(10px); }
-        .data-panel h4 { color: var(--cyber-cyan); text-transform: uppercase; margin-bottom: 12px; font-size: 1.05rem; letter-spacing: 1px; }
-        .data-panel p { color: var(--text-muted); font-size: 0.95rem; }
+        .tagline { 
+            color: var(--cyber-cyan); font-family: 'Orbitron', sans-serif; font-size: 1.4rem; 
+            font-weight: 700; text-transform: uppercase; letter-spacing: 0.4em; margin-bottom: 40px;
+            text-shadow: 0 0 20px rgba(0, 243, 255, 0.4);
+        }
 
-        /* APPLICATION TRACKING CONTROL INTERFACE */
-        .form-section { background: var(--card-bg); border: 1px solid rgba(0, 243, 255, 0.2); border-radius: 12px; padding: 50px; max-width: 800px; margin: 0 auto; backdrop-filter: blur(15px); text-align: center; }
-        .form-group { margin-bottom: 25px; text-align: left; }
-        label { display: block; color: var(--cyber-cyan); font-size: 0.8rem; font-weight: 800; text-transform: uppercase; margin-bottom: 8px; letter-spacing: 1px; }
-        input { width: 100%; padding: 14px; background-color: #03060f; border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 6px; color: #ffffff; font-size: 1rem; }
-        input:focus { border-color: var(--cyber-cyan); outline: none; box-shadow: 0 0 12px rgba(0, 243, 255, 0.4); }
-        button { background: linear-gradient(90deg, var(--cyber-cyan) 0%, #0066ff 100%); color: #02040a; border: none; padding: 18px 40px; font-size: 1.05rem; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; border-radius: 6px; width: 100%; box-shadow: 0 4px 15px rgba(0, 243, 255, 0.3); transition: all 0.2s; }
-        button:hover { box-shadow: 0 0 30px var(--cyber-cyan); }
-        footer { text-align: center; color: #536782; font-size: 0.85rem; margin-top: 100px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.05); }
-    </style>
-</head>
-<body>
+        .intro-block { 
+            color: #b0c4de; font-size: 1.3rem; max-width: 900px; margin: 0 auto; line-height: 1.8;
+            font-weight: 500;
+        }
 
-    <!-- INTERACTIVE CANVAS NETWORK LAYER -->
-    <canvas id="interactiveGridCanvas"></canvas>
+        /* PREMIUM DUAL SHOWCASE CARDS */
+        .grid-primary { 
+            display: grid; grid-template-columns: 1fr 1fr; gap: 50px; margin-bottom: 80px; 
+        }
 
-    <!-- FIXED BRAND HEADER (TESLA & APPLE BRAND STYLING POSITION) -->
-    <nav class="top-nav">
-        <div class="logo-area">
-            <!-- LOGO IMAGE EMBED FIELD (GitHub reads this path natively) -->
-            <img src="logo.png" alt="" class="logo-img" onerror="this.style.display='none'">
-            <span class="logo-text">FutureSurface</span>
-        </div>
-        <div class="nav-status">USPTO Priority Secure Node</div>
-    </nav>
+        .card { 
+            background: var(--glass-card); border: 1px solid var(--border-glow); border-radius: 20px; 
+            padding: 50px; position: relative; overflow: hidden; backdrop-filter: blur(25px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.8); transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
 
-    <div class="container">
-        <!-- SYSTEM BRIEFING INTRO -->
-        <header class="hero-panel">
-            <h1>FutureSurface Technologies</h1>
-            <div class="tagline">Active Attenuation Systems</div>
-            <p class="intro-text">Engineering high-leverage structural safety platforms that dynamically transform target boundaries from rigid load-bearing states to energy-absorbing configurations in sub-millisecond windows [17/501,355].</p>
-        </header>
+        .card::after {
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(0,243,255,0.08) 0%, transparent 60%);
+            opacity: 0; transition: opacity 0.5s; pointer-events: none;
+        }
 
-        <!-- HARDWARE MATRIX -->
-        <section class="grid-primary">
-            <div class="card">
-                <h2>Cellular Breakaway Grids</h2>
-                <ul>
-                    <li><strong>Decentralized Logic Array:</strong> Self-contained module cells running native hardware thread loops to isolate threat calculations instantly [17/501,355].</li>
-                    <li><strong>Horizontal Solenoids:</strong> High-speed internal electromechanical locking units executing sub-surface frame shifts to pull back links [17/501,355].</li>
-                </ul>
-            </div>
-            <div class="card">
-                <h2>Dynamic Subsurface Arrays</h2>
-                <ul>
-                    <li><strong>Fluid Attenuation Jackets:</strong> Internal containment bladders charged with responsive phase-changing fluids or gels to swallow rebound completely [Specs_TUP64682.pdf].</li>
-                    <li><strong>High-Torque Winch Loops:</strong> Subsurface mechanical tension lines driven by stepper motors to instantly alter canvas displacement paths [Specs_TUP64682.pdf].</li>
-                </ul>
-            </div>
-        </section>
+        .card:hover {
+            border-color: var(--cyber-cyan); box-shadow: 0 0 50px rgba(0, 243, 255, 0.25);
+            transform: translateY(-8px);
+        }
+        .card:hover::after { opacity: 1; }
 
-        <!-- 1-6 OPERATIONS SECTIONS -->
-        <h3 style="text-transform: uppercase; letter-spacing: 3px; font-size: 1.2rem; text-align: center; margin-bottom: 30px;">⚡ SYSTEM INTEGRATION OPERATIONS MAPPING</h3>
-        <section class="expanded-grid">
-            <div class="data-panel"><h4>1. Enterprise Park Rollout</h4><p>Designed specifically to protect commercial trampoline park chains by dropping catastrophic fracture and litigation liability risks to zero without increasing overhead footprints [17/501,355].</p></div>
-            <div class="data-panel"><h4>2. Academic Research Core</h4><p>Active Spring 2027 Capstone tracks across Northeastern, WPI, and BU provide thousands of hours of free, faculty-supervised laboratory development and 3D CAD modeling [17/501,355].</p></div>
-            <div class="data-panel"><h4>3. Technical Hardware Framework</h4><p>Eliminates traditional spring rebound risks completely through variable-porosity pneumatic aperture flow control vanes, trapping kinetic loads safely flat [Specs_TUP64682.pdf].</p></div>
-            <div class="data-panel"><h4>4. Non-Dilutive Federal Funding</h4><p>Backed by active Small Business Innovation Research (SBIR) Phase I federal grant tracks targeting up to $250,000 in non-repayable government R&D capital [17/501,355].</p></div>
-            <div class="data-panel"><h4>5. Field-Of-Use Territorial Bounds</h4><p>Licensing architecture enforces strict industrial boundaries. Commercial amusement park assets remain completely independent of concrete skatepark or aerospace applications [17/501,355].</p></div>
-            <div class="data-panel"><h4>6. Multi-Tenant Royalty Bidding</h4><p>Blueprints are structured under a Non-Exclusive Territorial framework, enabling concurrent monetization across competing global franchises backed by minimum annual royalty guarantees [17/501,355].</p></div>
-        </section>
+        h2 { 
+            font-family: 'Orbitron', sans-serif; color: #ffffff; font-size: 1.8rem; font-weight: 700; 
+            margin-bottom: 30px; text-transform: uppercase; display: flex; align-items: center; gap: 15px;
+        }
 
-        <!-- INTAKE CONSOLE -->
-        <section class="form-section">
+        h2::before {
+            content: ""; display: inline-block; width: 6px; height: 26px; background: var(--cyber-cyan);
+            box-shadow: 0 0 15px var(--cyber-cyan); border-radius: 4px;
+        }
+
+        .specs-badge {
+            font-family: 'Orbitron', sans-serif; font-size: 0.8rem; color: var(--cyber-cyan);
+            border: 1px solid rgba(0,243,255,0.4); background: rgba(0,243,255,0.08);
+            padding: 6px 14px; border-radius: 6px; margin-bottom: 30px; display: inline-block;
+            letter-spacing: 0.1em;
+        }
+
+        ul { list-style-type: none; }
+        li { margin-bottom: 22px; color: #e2e8f0; font-size: 1.1rem; position: relative; padding-left: 35px; }
+        li strong { color: var(--cyber-cyan); font-weight: 700; }
+        li::before { 
+            content: "✦"; position: absolute; left: 0; top: 0; color: var(--cyber-cyan);
+            font-size: 1.2rem; text-shadow: 0 0 10px var(--cyber-cyan);
+        }
+
+        /* EXPANDED SYSTEM DATA ARCHITECTURES */
+        .expanded-grid {
+            display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 40px; margin-bottom: 80px;
+        }
+
+        .data-panel {
+            background: rgba(6, 11, 26, 0.9); border: 1px solid rgba(0, 243, 255, 0.15);
+            border-radius: 12px; padding: 40px; box-shadow: 0 20px 45px rgba(0,0,0,0.6);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); backdrop-filter: blur(15px);
+        }
+        .data-panel:hover { 
+            border-color: var(--cyber-magenta); box-shadow: 0 0 30px rgba(255,0,85,0.2);
+            transform: translateY(-4px);
+        }
+        .data-panel h4 { 
+            font-family: 'Orbitron', sans-serif; color: var(--cyber-magenta); font-size: 1.2rem; 
+            font-weight: 900; text-transform: uppercase; margin-bottom: 15px; letter-spacing: 1px;
+        }
+        .data-panel p { color: #a0aec0; font-size: 1rem; line-height: 1.7; }
+
+        /* METALLIC GOLD INTELLECTUAL VAULT SHIELD */
+        .ip-shield-banner { 
+            background: linear-gradient(135deg, #121b36 0%, #030612 100%);
+            border: 2px solid var(--gold); border-radius: 16px; 
+            padding: 60px 40px; text-align: center; margin-bottom: 80px; 
+            box-shadow: 0 0 50px rgba(212, 175, 55, 0.2), inset 0 0 20px rgba(212, 175, 55, 0.05);
+            position: relative;
+        }
+        .ip-shield-banner h3 { 
+            font-family: 'Orbitron', sans-serif; color: var(--gold); font-size: 1.8rem; text-transform: uppercase;
+            letter-spacing: 0.2em; margin-bottom: 20px; font-weight: 900;
+            text-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+        }
+        .ip-shield-banner p { color: #ffffff; font-size: 1.2rem; max-width: 1000px; margin: 0 auto; line-height: 1.8; font-weight: 500; }
+
+        /* HIGH-LEVEL INVESTOR DATA ROOM FORM */
+        .form-section { 
+            background: rgba(4, 8, 18, 0.9); border: 1px solid rgba(0, 243, 255, 0.2); border-radius: 24px; 
+            padding: 60px; max-width: 900px; margin: 0 auto; text-align: center;
+            box-shadow: 0 40px 80px rgba(0,0,0,0.8); backdrop-filter: blur(30px);
+        }
+        .form-section h2 { font-family: 'Orbitron', sans-serif; justify-content: center; font-size: 2.2rem; margin-bottom: 20px; border: none; padding: 0; }
+        .form-section p { color: #a0aec0; margin-bottom: 45px; font-size: 1.15rem; max-width: 700px; margin-left: auto; margin-right: auto; }
+
+        .form-group { margin-bottom: 30px; text-align: left; }
+        label { display: block; color: var(--cyber-cyan); font-family: 'Orbitron', sans-serif; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; margin-bottom: 12px; letter-spacing: 0.15em; }
+        input { 
+            width: 100%; padding: 18px; background-color: #03060f; border: 1px solid rgba(255, 255, 255, 0.15); 
+            border-radius: 8px; color: #ffffff; font-size: 1.1rem; transition: all 0.3s;
+            font-family: inherit;
+        }
+        input:focus { 
+            border-color: var(--cyber-cyan); outline: none; box-shadow: 0 0 20px rgba(0, 243, 255, 0.4); background-color: #061229;
+        }
+
+        button { 
+            background: linear-gradient(90deg, var(--cyber-cyan) 0%, var(--cyber-blue) 100%);
+            color: #02050d; border: none; padding: 22px 40px; font-family: 'Orbitron', sans-serif; font-size: 1.2rem; font-weight: 900; 
+            text-transform: uppercase; letter-spacing: 0.2em; cursor: pointer; border-radius: 8px; 
+            width: 100%; box-shadow: 0 8px 30px rgba(0, 243, 255, 0.3); transition: all 0.4s ease;
+        }
+        button:hover { box-shadow: 0 0 50px var(--cyber-cyan); transform: translateY(-2px); }
+
