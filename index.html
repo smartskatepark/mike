@@ -3,80 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FutureSurface Technologies</title>
+    <title>FutureSurface Technologies | Active Attenuation Matrix</title>
     <style>
-        body { 
-            background-color: #030611; 
-            color: #ffffff; 
-            font-family: sans-serif; 
-            padding: 40px 20px; 
-            background-image: linear-gradient(rgba(0, 243, 255, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 243, 255, 0.1) 1px, transparent 1px);
-            background-size: 40px 40px;
+        :root {
+            --bg-main: #02050d;
+            --bg-card: rgba(8, 14, 30, 0.95);
+            --cyber-cyan: #00f3ff;
+            --cyber-blue: #0066ff;
+            --cyber-magenta: #ff0055;
+            --text-white: #ffffff;
+            --text-muted: #94a9c4;
         }
-        .panel { 
-            max-width: 900px; 
-            margin: 0 auto 30px auto; 
-            background: #0b1124; 
-            border: 2px solid #00f3ff; 
-            padding: 40px; 
-            border-radius: 8px; 
-            box-shadow: 0 0 30px rgba(0,243,255,0.2);
-        }
-        h1 { font-size: 2.5rem; text-transform: uppercase; margin-bottom: 10px; letter-spacing: 2px; }
-        h2 { font-size: 1.5rem; color: #00f3ff; text-transform: uppercase; margin-bottom: 20px; }
-        p { color: #8fa0b5; font-size: 1.1rem; line-height: 1.6; margin-bottom: 20px; }
-        ul { list-style: none; padding: 0; }
-        li { margin-bottom: 15px; font-size: 1.05rem; padding-left: 20px; position: relative; }
-        li::before { content: "➔"; color: #00f3ff; position: absolute; left: 0; }
-        .grid-box { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin-top: 40px; }
-        .box { background: #040814; border: 1px solid rgba(255,255,255,0.1); padding: 20px; border-radius: 4px; }
-        .box h4 { color: #ff0055; margin-bottom: 10px; text-transform: uppercase; }
-        .box p { font-size: 0.9rem; margin: 0; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background-color: var(--bg-main); color: var(--text-white); font-family: sans-serif; min-height: 100vh; overflow-x: hidden; }
+        #interactiveGridCanvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; background-color: var(--bg-main); pointer-events: none; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 60px 20px; position: relative; }
+        header { text-align: center; padding: 60px 40px; background: rgba(6, 11, 25, 0.85); border: 2px solid var(--cyber-cyan); border-radius: 12px; margin-bottom: 60px; }
+        h1 { font-size: 3.5rem; text-transform: uppercase; margin-bottom: 15px; }
+        .tagline { color: var(--cyber-cyan); font-size: 1.3rem; font-weight: 700; text-transform: uppercase; margin-bottom: 30px; }
+        .intro-block { color: var(--text-muted); font-size: 1.15rem; max-width: 900px; margin: 0 auto; }
+        .grid-primary { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 60px; }
+        .card { background: var(--bg-card); border: 1px solid rgba(0, 243, 255, 0.2); border-radius: 12px; padding: 45px; }
+        h2 { color: #ffffff; font-size: 1.5rem; margin-bottom: 25px; border-left: 4px solid var(--cyber-cyan); padding-left: 15px; }
+        ul { list-style-type: none; } li { margin-bottom: 15px; color: #f1f5f9; padding-left: 25px; position: relative; }
+        li::before { content: "▪"; position: absolute; left: 0; color: var(--cyber-cyan); }
+        .expanded-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 30px; margin-bottom: 60px; }
+        .data-panel { background: rgba(4, 8, 20, 0.95); border: 1px solid rgba(0, 243, 255, 0.2); border-radius: 8px; padding: 30px; }
+        .data-panel h4 { color: var(--cyber-magenta); text-transform: uppercase; margin-bottom: 12px; }
+        .data-panel p { color: var(--text-muted); font-size: 0.95rem; }
+        footer { text-align: center; color: #536782; font-size: 0.85rem; margin-top: 100px; padding-top: 40px; }
     </style>
 </head>
 <body>
-
-    <div class="panel">
-        <h1>FutureSurface Technologies</h1>
-        <h2>Active Attenuation Systems</h2>
-        <p>Engineering high-leverage structural safety systems that dynamically transform boundary elements from rigid load-bearing states to energy-absorbing configurations in sub-millisecond windows. Operating via decentralized logic microchips embedded directly at the cellular layer, our architectures permanently eliminate communication latency, mitigating high-velocity kinetic loads across global enterprise amusement infrastructure and industrial matrices.</p>
+    <canvas id="interactiveGridCanvas"></canvas>
+    <div class="container">
+        <header>
+            <h1>FutureSurface Technologies</h1>
+            <div class="tagline">Active Attenuation Systems</div>
+            <p class="intro-block">Engineering high-leverage structural safety systems that dynamically transform boundary elements...</p>
+        </header>
+        <section class="grid-primary">
+            <div class="card"><h2>Cellular Breakaway Grids</h2><ul><li><strong>Decentralized Logic:</strong> Instant threat isolation.</li></ul></div>
+            <div class="card"><h2>Dynamic Subsurface Arrays</h2><ul><li><strong>Fluid Attenuation:</strong> Swallows rebound velocity.</li></ul></div>
+        </section>
+        <section class="expanded-grid">
+            <div class="data-panel"><h4>1. Enterprise Rollout</h4><p>Commercial park safety integration.</p></div>
+            <div class="data-panel"><h4>2. Academic Research</h4><p>University engineering lab development.</p></div>
+            <div class="data-panel"><h4>3. Hardware Framework</h4><p>Pneumatic aperture flow control.</p></div>
+        </section>
+        <footer>&copy; 2026 FutureSurface Technologies. All Rights Reserved.</footer>
     </div>
-
-    <div class="panel">
-        <h2>Cellular Breakaway Grids</h2>
-        <ul>
-            <li><strong>Decentralized Chip Logic:</strong> Self-contained module blocks running native hardware thread loops to isolate threat calculations instantly.</li>
-            <li><strong>Horizontal Fasteners:</strong> High-speed internal solenoids executing spatial configuration shifts to pull back connecting link pins.</li>
-            <li><strong>Zoned Perimeter Deflection:</strong> Targeted cell points release vertically to cushion high-velocity body falls while all surrounding framing tiles stay rigid.</li>
-        </ul>
-    </div>
-
-    <div class="panel">
-        <h2>Dynamic Subsurface Arrays</h2>
-        <ul>
-            <li><strong>Fluid Attenuation Bladders:</strong> Internal containment jackets charged with responsive thixotropic suspensions or gels that swallow rebound velocity.</li>
-            <li><strong>High-Torque Pulley Loops:</strong> Sub-surface mechanical tension winch loops driven by stepper motors to instantly alter canvas displacement paths.</li>
-            <li><strong>Predictive Vision Synthesis:</strong> Integrated solid-state LiDAR matrices to discriminate object trajectory vectors and velocity scales within sub-milliseconds.</li>
-        </ul>
-    </div>
-
-    <div class="panel">
-        <h2>⚡ System Integration Operations Mapping</h2>
-        <div class="grid-box">
-            <div class="box">
-                <h4>1. Park Rollout</h4>
-                <p>Designed to protect commercial trampoline park chains by dropping fracture liability risks to zero.</p>
-            </div>
-            <div class="box">
-                <h4>2. Academic Core</h4>
-                <p>Active Spring 2027 Capstone Engineering tracks across Northeastern, WPI, and BU provide free lab development.</p>
-            </div>
-            <div class="box">
-                <h4>3. Hardware Core</h4>
-                <p>Eliminates spring rebound risks completely through variable-porosity pneumatic aperture flow control vanes.</p>
-            </div>
-        </div>
-    </div>
-
+    <script>
+        const canvas = document.getElementById('interactiveGridCanvas');
+        const ctx = canvas.getContext('2d');
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
+        const mouse = { x: null, y: null, radius: 220 };
+        window.addEventListener('resize', () => { width = canvas.width = window.innerWidth; height = canvas.height = window.innerHeight; });
+        window.addEventListener('mousemove', (e) => { mouse.x = e.clientX; mouse.y = e.clientY; });
+        window.addEventListener('mouseleave', () => { mouse.x = null; mouse.y = null; });
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+            ctx.strokeStyle = 'rgba(0, 243, 255, 0.25)';
+            for (let y = 0; y < height; y += 45) {
+                ctx.beginPath();
+                for (let x = 0; x < width; x += 15) {
+                    let dy = 0;
+                    if (mouse.x !== null && mouse.y !== null) {
+                        const dist = Math.hypot(x - mouse.x, y - mouse.y);
+                        if (dist < mouse.radius) dy = (y - mouse.y) * -0.18 * ((mouse.radius - dist) / mouse.radius);
+                    }
+                    x === 0 ? ctx.moveTo(x, y + dy) : ctx.lineTo(x, y + dy);
+                }
+                ctx.stroke();
+            }
+            requestAnimationFrame(animate);
+        }
+        animate();
+    </script>
 </body>
 </html>
