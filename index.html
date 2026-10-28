@@ -3,98 +3,302 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FutureSurface | Active Attenuation Infrastructure</title>
+    <title>FutureSurface Technologies | Active Attenuation Systems</title>
     <style>
+        :root {
+            --bg-main: #050811;
+            --bg-card: rgba(16, 23, 41, 0.7);
+            --accent-glow: #00f3ff;
+            --accent-gold: #d4af37;
+            --text-primary: #ffffff;
+            --text-secondary: #8a99ad;
+            --border-color: rgba(0, 243, 255, 0.2);
+        }
+
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { background-color: #0b0c10; color: #c5a059; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; padding: 20px; }
-        .container { max-width: 1100px; margin: 0 auto; padding: 40px 20px; }
-        header { border-bottom: 2px solid #1f2833; padding-bottom: 40px; margin-bottom: 60px; text-align: center; }
-        h1 { color: #ffffff; font-size: 2.8rem; font-weight: 800; letter-spacing: -0.05em; text-transform: uppercase; margin-bottom: 10px; }
-        .tagline { color: #66fcf1; font-size: 1.2rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; }
-        .intro-text { color: #f5f5f5; font-size: 1.15rem; margin-top: 25px; text-align: justify; max-width: 900px; margin-left: auto; margin-right: auto; }
-        .grid-section { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 60px; }
-        .card { background-color: #1f2833; border: 1px solid #45a29e; border-radius: 4px; padding: 30px; }
-        h2 { color: #ffffff; font-size: 1.4rem; font-weight: 700; margin-bottom: 20px; text-transform: uppercase; letter-spacing: -0.02em; border-left: 4px solid #66fcf1; padding-left: 12px; }
+        
+        body { 
+            background-color: var(--bg-main); 
+            color: var(--text-primary); 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+            line-height: 1.6; 
+            padding: 0;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(0, 243, 255, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(212, 175, 55, 0.03) 0%, transparent 40%);
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 60px 20px; }
+
+        header { 
+            text-align: center; 
+            padding-bottom: 50px; 
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            margin-bottom: 60px; 
+        }
+
+        .brand-badge {
+            display: inline-block;
+            padding: 6px 16px;
+            background: rgba(0, 243, 255, 0.07);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            color: var(--accent-glow);
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.1);
+        }
+
+        h1 { 
+            font-size: 3.5rem; 
+            font-weight: 900; 
+            letter-spacing: -0.03em; 
+            text-transform: uppercase; 
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #ffffff 0%, #a3b8cc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .tagline { 
+            color: var(--accent-glow); 
+            font-size: 1.25rem; 
+            font-weight: 600; 
+            text-transform: uppercase; 
+            letter-spacing: 0.2em; 
+            margin-bottom: 30px;
+            text-shadow: 0 0 10px rgba(0, 243, 255, 0.2);
+        }
+
+        .intro-text { 
+            color: var(--text-secondary); 
+            font-size: 1.2rem; 
+            max-width: 850px; 
+            margin: 0 auto; 
+            text-align: center;
+        }
+
+        .grid-section { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 40px; 
+            margin-bottom: 60px; 
+        }
+
+        .card { 
+            background: var(--bg-card); 
+            border: 1px solid var(--border-color); 
+            border-radius: 8px; 
+            padding: 40px; 
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .card:hover {
+            border-color: var(--accent-glow);
+            box-shadow: 0 0 30px rgba(0, 243, 255, 0.15);
+            transform: translateY(-4px);
+        }
+
+        h2 { 
+            color: var(--text-primary); 
+            font-size: 1.6rem; 
+            font-weight: 800; 
+            margin-bottom: 25px; 
+            text-transform: uppercase; 
+            letter-spacing: -0.01em; 
+            display: flex;
+            align-items: center;
+        }
+
+        h2::before {
+            content: "";
+            display: inline-block;
+            width: 4px;
+            height: 24px;
+            background: var(--accent-glow);
+            margin-right: 15px;
+            box-shadow: 0 0 10px var(--accent-glow);
+        }
+
         ul { list-style-type: none; }
-        li { margin-bottom: 15px; color: #f5f5f5; font-size: 1rem; position: relative; padding-left: 20px; }
-        li::before { content: "▪"; color: #66fcf1; position: absolute; left: 0; top: 0; }
-        .video-placeholder { background-color: #0b0c10; border: 1px dashed #45a29e; height: 240px; margin-top: 20px; display: flex; align-items: center; justify-content: center; color: #66fcf1; font-weight: 600; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 0.05em; }
-        .ip-banner { background-color: #112233; border: 2px solid #66fcf1; border-radius: 4px; padding: 30px; text-align: center; margin-bottom: 60px; }
-        .ip-banner h2 { border: none; padding: 0; display: inline-block; margin-bottom: 15px; }
-        .ip-banner p { color: #ffffff; font-size: 1.1rem; max-width: 800px; margin: 0 auto; }
-        .form-section { background-color: #1f2833; border: 1px solid #c5a059; border-radius: 4px; padding: 40px; max-width: 600px; margin: 0 auto; text-align: center; }
-        .form-section p { color: #ffffff; margin-bottom: 25px; font-size: 1.05rem; }
-        .form-group { margin-bottom: 20px; text-align: left; }
-        label { display: block; color: #66fcf1; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; margin-bottom: 5px; letter-spacing: 0.05em; }
-        input { width: 100%; padding: 12px; background-color: #0b0c10; border: 1px solid #45a29e; border-radius: 2px; color: #ffffff; font-size: 1rem; }
-        input:focus { border-color: #c5a059; outline: none; }
-        button { background-color: #c5a059; color: #0b0c10; border: none; padding: 15px 30px; font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; cursor: pointer; border-radius: 2px; margin-top: 10px; width: 100%; transition: background-color 0.2s ease; }
-        button:hover { background-color: #ffffff; }
-        footer { text-align: center; color: #45a29e; font-size: 0.85rem; margin-top: 80px; border-top: 1px solid #1f2833; padding-top: 30px; }
+        
+        li { 
+            margin-bottom: 18px; 
+            color: var(--text-secondary); 
+            font-size: 1.05rem; 
+            position: relative; 
+            padding-left: 25px; 
+        }
+
+        li::before { 
+            content: "➔"; 
+            color: var(--accent-glow); 
+            position: absolute; 
+            left: 0; 
+            top: 0; 
+        }
+
+        .video-container { 
+            background-color: #020408; 
+            border: 1px solid rgba(255, 255, 255, 0.05); 
+            border-radius: 6px;
+            height: 260px; 
+            margin-top: 30px; 
+            display: flex; 
+            flex-direction: column;
+            align-items: center; 
+            justify-content: center; 
+            color: var(--accent-glow); 
+            font-weight: 700; 
+            text-transform: uppercase; 
+            font-size: 0.85rem; 
+            letter-spacing: 0.1em; 
+            position: relative;
+            overflow: hidden;
+        }
+
+        .video-container::after {
+            content: "SECURE SIMULATION ACCESS RESTRICTED";
+            font-size: 0.75rem;
+            color: rgba(255, 0, 0, 0.5);
+            border: 1px solid rgba(255, 0, 0, 0.3);
+            padding: 4px 10px;
+            margin-top: 10px;
+            border-radius: 2px;
+            background: rgba(255, 0, 0, 0.05);
+        }
+
+        .ip-banner { 
+            background: linear-gradient(135deg, rgba(16, 23, 41, 0.8) 0%, rgba(5, 8, 17, 0.9) 100%);
+            border: 1px solid var(--accent-gold); 
+            border-radius: 8px; 
+            padding: 40px; 
+            text-align: center; 
+            margin-bottom: 60px; 
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.05);
+        }
+
+        .ip-banner h3 { 
+            color: var(--accent-gold);
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 15px;
+        }
+
+        .ip-banner p { 
+            color: var(--text-secondary); 
+            font-size: 1.1rem; 
+            max-width: 900px; 
+            margin: 0 auto; 
+            line-height: 1.7;
+        }
+
+        .form-section { 
+            background: var(--bg-card); 
+            border: 1px solid rgba(255, 255, 255, 0.05); 
+            border-radius: 8px; 
+            padding: 50px; 
+            max-width: 700px; 
+            margin: 0 auto; 
+            backdrop-filter: blur(10px);
+        }
+
+        .form-section h2 { justify-content: center; margin-bottom: 15px; }
+        .form-section h2::before { display: none; }
+
+        .form-section p { 
+            color: var(--text-secondary); 
+            margin-bottom: 35px; 
+            font-size: 1.1rem; 
+            text-align: center;
+        }
+
+        .form-group { margin-bottom: 25px; text-align: left; }
+        
+        label { 
+            display: block; 
+            color: var(--accent-glow); 
+            font-size: 0.8rem; 
+            font-weight: 700; 
+            text-transform: uppercase; 
+            margin-bottom: 8px; 
+            letter-spacing: 0.1em; 
+        }
+
+        input { 
+            width: 100%; 
+            padding: 14px; 
+            background-color: #020408; 
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+            border-radius: 4px; 
+            color: var(--text-primary); 
+            font-size: 1rem; 
+            transition: all 0.2s ease;
+        }
+
+        input:focus { 
+            border-color: var(--accent-glow); 
+            outline: none; 
+            box-shadow: 0 0 10px rgba(0, 243, 255, 0.2);
+        }
+
+        button { 
+            background: linear-gradient(135deg, var(--accent-glow) 0%, #00a8ff 100%);
+            color: #020408; 
+            border: none; 
+            padding: 16px 30px; 
+            font-size: 1rem; 
+            font-weight: 700; 
+            text-transform: uppercase; 
+            letter-spacing: 0.1em; 
+            cursor: pointer; 
+            border-radius: 4px; 
+            margin-top: 15px; 
+            width: 100%; 
+            box-shadow: 0 4px 15px rgba(0, 243, 255, 0.2);
+            transition: all 0.2s ease;
+        }
+
+        button:hover { 
+            box-shadow: 0 0 25px var(--accent-glow);
+            transform: translateY(-1px);
+        }
+
+        footer { 
+            text-align: center; 
+            color: #4f5e71; 
+            font-size: 0.85rem; 
+            margin-top: 100px; 
+            border-top: 1px solid rgba(255, 255, 255, 0.05); 
+            padding-top: 40px; 
+        }
+
+        @media (max-width: 768px) {
+            .grid-section { grid-template-columns: 1fr; }
+            h1 { font-size: 2.5rem; }
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>FutureSurface</h1>
-            <div class="tagline">Decentralized Active Attenuation Infrastructure</div>
+            <div class="brand-badge">Secure Enterprise Portal</div>
+            <h1>FutureSurface Technologies</h1>
+            <div class="tagline">Active Attenuation Systems</div>
             <p class="intro-text">
-                FutureSurface develops intelligent, multi-layered structural systems engineered to transform surface boundaries from load-bearing rigid states to low-resistance energy-attenuating configurations in sub-millisecond windows. By deploying decentralized edge computing microprocessors directly within independent spatial layers, our architectures eliminate communication delay, mitigating high-velocity kinetic impacts across automated networks, athletic spaces, and structural matrices.
+                Developing intelligent, multi-layered structural systems engineered to transform surface boundaries from load-bearing rigid states to energy-attenuating configurations in sub-millisecond windows. By deploying decentralized edge computing microprocessors directly within independent layers, our architectures eliminate communication delay, mitigating high-velocity kinetic impacts across automated networks, athletic spaces, and industrial matrices.
             </p>
         </header>
 
         <section class="grid-section">
             <div class="card">
-                <h2>1. Cellular Breakaway Configurations</h2>
+                <h2>Cellular Breakaway Configurations</h2>
                 <ul>
-                    <li>Decentralized Edge Processing: Self-contained module cells running native micro-logic threat loops to keep response latency below 5 milliseconds.</li>
-                    <li>Synchronized Fasteners: Electronic solenoids executing localized state changes, retracting dynamic horizontal interlocking connection pins on demand.</li>
-                    <li>Zoned Deflection Perimeter: Single affected tiles drop vertically to capture transient kinetic loads while surrounding cells retain full rigid load capacities.</li>
-                </ul>
-                <div class="video-placeholder">Simulation 01: Modular Cell Detachment</div>
-            </div>
-
-            <div class="card">
-                <h2>2. Fluidic & Variable Propulsion Sheets</h2>
-                <ul>
-                    <li>Comprehensive Flowable Substance Matrix: Internal bladders charged with responsive phase-changing fluids, rheological compounds, or gels.</li>
-                    <li>Field-Free Levitation Sub-Structures: Suspension of continuous surface layers via electromagnetic, diamagnetic, or acoustic elevation mechanics.</li>
-                    <li>Tension-Wire Pulley Arrays: Integrated subsurface winch networks managing canvas displacement to optimize propulsion and cushion transient trajectories.</li>
-                </ul>
-                <div class="video-placeholder">Simulation 02: Dynamic Subsurface Winch Spooling</div>
-            </div>
-        </section>
-
-        <section class="ip-banner">
-            <h2>Protected Intellectual Property Portfolio</h2>
-            <p>
-                Our technological architecture is fully anchored within the United States Patent and Trademark Office. The baseline innovations are securely backed by published federal utility prior art data, with optimized advancements and sub-millisecond logic loops currently maintained under active Patent Pending status.
-            </p>
-        </section>
-
-        <section class="form-section">
-            <h2>Enterprise Portals & Joint Development</h2>
-            <p>Access to technical specifications, architectural schematics, and laboratory drop-test reports requires an active Mutual Non-Disclosure Agreement (NDA).</p>
-            
-                <div class="form-group">
-                    <label for="name">Authorized Representative</label>
-                    <input type="text" id="name" required placeholder="Full Legal Name">
-                </div>
-                <div class="form-group">
-                    <label for="corporate">Corporate Entity</label>
-                    <input type="text" id="corporate" required placeholder="Company or Institution">
-                </div>
-                <div class="form-group">
-                    <label for="email">Secure Email Node</label>
-                    <input type="email" id="email" required placeholder="representative@company.com">
-                </div>
-                <button type="submit">Request Secure Portfolio Access</button>
-            </form>
-        </section>
-
-        <footer>
-            &copy; 2026 FutureSurface Technologies. All Rights Reserved. Private Pro Pro Se Portfolio Archive. Waltham, MA.
-        </footer>
-    </div>
-</body>
-</html>
+                    <li><strong>Decentralized Edge Processing:</strong> Self-contained module cells running native micro-logic threat loops to keep response latency below 5 milliseconds.</li>
