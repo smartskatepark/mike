@@ -6,15 +6,14 @@
     <title>FutureSurface Technologies | Active Attenuation Matrix</title>
     <style>
         :root {
-            --bg-main: #02050d;
-            --bg-card: rgba(8, 14, 30, 0.85);
+            --bg-main: #02040a;
+            --bg-card: rgba(8, 14, 30, 0.9);
             --cyber-cyan: #00f3ff;
             --cyber-blue: #0066ff;
             --cyber-magenta: #ff0055;
             --text-gold: #d4af37;
             --text-white: #ffffff;
-            --text-muted: #94a9c4;
-            --grid-brightness: rgba(0, 243, 255, 0.22); /* Cranking grid line visibility up by 400% */
+            --text-muted: #8fa0b5;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -29,181 +28,175 @@
             min-height: 100vh;
         }
 
-        /* HYPER-BRIGHT INTERACTIVE BLUEPRINT BACKGROUND GRID MATRIX */
-        .matrix-grid {
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -2;
-            background-image: 
-                linear-gradient(var(--grid-brightness) 1.5px, transparent 1.5px),
-                linear-gradient(90deg, var(--grid-brightness) 1.5px, transparent 1.5px);
-            background-size: 50px 50px;
-            pointer-events: none;
-        }
-
-        /* MOUSE-TRACKING GLOW SHIELD (DYNAMIC RADAR CURSOR) */
-        .cursor-glow {
-            position: fixed; top: 0; left: 0; width: 600px; height: 600px;
-            background: radial-gradient(circle, rgba(0, 243, 255, 0.18) 0%, rgba(0, 102, 255, 0.05) 40%, transparent 70%);
-            border-radius: 50%; z-index: -1; transform: translate(-50%, -50%);
-            pointer-events: none; transition: transform 0.05s linear;
+        /* LIVE INTERACTIVE CANVAS VECTOR LAYER */
+        #interactiveGridCanvas {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1;
+            background-color: var(--bg-main); pointer-events: none;
         }
 
         .container { max-width: 1300px; margin: 0 auto; padding: 80px 20px; position: relative; }
 
-        /* THE ENTERPRISE HEADER */
+        /* THE SYSTEM HEADER */
         header { 
-            text-align: center; padding: 80px 40px;
-            background: rgba(6, 11, 25, 0.9); border: 2px solid var(--cyber-cyan); border-radius: 16px;
+            text-align: center; padding: 60px 40px;
+            background: rgba(6, 11, 25, 0.85); border: 2px solid var(--cyber-cyan); border-radius: 12px;
             margin-bottom: 60px; backdrop-filter: blur(20px);
-            box-shadow: 0 0 50px rgba(0, 243, 255, 0.3), inset 0 0 20px rgba(0, 243, 255, 0.1);
+            box-shadow: 0 0 40px rgba(0, 243, 255, 0.25), inset 0 0 20px rgba(0, 243, 255, 0.1);
         }
 
         .status-node {
             display: inline-flex; align-items: center; gap: 10px;
-            padding: 8px 20px; background: rgba(0, 243, 255, 0.12);
+            padding: 6px 18px; background: rgba(0, 243, 255, 0.1);
             border: 1px solid var(--cyber-cyan); border-radius: 30px;
             color: var(--cyber-cyan); font-size: 0.8rem; font-weight: 800;
-            letter-spacing: 0.25em; text-transform: uppercase; margin-bottom: 30px;
+            letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 25px;
         }
         .status-dot {
-            width: 10px; height: 10px; background-color: var(--cyber-cyan);
-            border-radius: 50%; box-shadow: 0 0 12px var(--cyber-cyan);
+            width: 8px; height: 8px; background-color: var(--cyber-cyan);
+            border-radius: 50%; box-shadow: 0 0 10px var(--cyber-cyan);
             animation: beacon 1.5s infinite;
         }
 
         h1 { 
-            font-size: 4.2rem; font-weight: 900; letter-spacing: -0.04em; 
-            text-transform: uppercase; margin-bottom: 15px; line-height: 1.0;
+            font-size: 3.8rem; font-weight: 900; letter-spacing: -0.03em; 
+            text-transform: uppercase; margin-bottom: 15px; line-height: 1.1;
             background: linear-gradient(180deg, #ffffff 40%, #688cb0 100%);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
 
         .tagline { 
-            color: var(--cyber-cyan); font-size: 1.5rem; font-weight: 700; 
-            text-transform: uppercase; letter-spacing: 0.35em; margin-bottom: 35px;
-            text-shadow: 0 0 15px rgba(0, 243, 255, 0.4);
+            color: var(--cyber-cyan); font-size: 1.3rem; font-weight: 700; 
+            text-transform: uppercase; letter-spacing: 0.3em; margin-bottom: 30px;
+            text-shadow: 0 0 12px rgba(0, 243, 255, 0.3);
         }
 
         .intro-block { 
-            color: var(--text-white); font-size: 1.3rem; max-width: 950px; 
-            margin: 0 auto; line-height: 1.8; text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+            color: var(--text-muted); font-size: 1.2rem; max-width: 900px; 
+            margin: 0 auto; line-height: 1.7;
         }
 
-        /* PRIMARY CORE ARCHITECTURE GRID */
+        /* PRIMARY CORE ARCHITECTURE SHOWCASE */
         .grid-primary { 
             display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 60px; 
         }
 
         .card { 
-            background: var(--bg-card); border: 2px solid rgba(0, 243, 255, 0.15); border-radius: 12px; 
-            padding: 45px; position: relative; overflow: hidden; backdrop-filter: blur(10px);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.7); transition: all 0.3s ease;
+            background: var(--bg-card); border: 1px solid rgba(0, 243, 255, 0.2); border-radius: 12px; 
+            padding: 45px; position: relative; overflow: hidden; backdrop-filter: blur(15px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6); transition: all 0.3s ease;
         }
 
         .card:hover {
-            border-color: var(--cyber-cyan); box-shadow: 0 0 40px rgba(0, 243, 255, 0.35);
-            transform: translateY(-4px);
+            border-color: var(--cyber-cyan); box-shadow: 0 0 40px rgba(0, 243, 255, 0.3);
+            transform: translateY(-3px);
         }
 
         h2 { 
-            color: #ffffff; font-size: 1.8rem; font-weight: 900; margin-bottom: 25px; 
-            text-transform: uppercase; border-left: 5px solid var(--cyber-cyan); padding-left: 15px;
+            color: #ffffff; font-size: 1.6rem; font-weight: 900; margin-bottom: 25px; 
+            text-transform: uppercase; border-left: 4px solid var(--cyber-cyan); padding-left: 15px;
         }
 
         .specs-badge {
-            font-family: monospace; font-size: 0.85rem; color: var(--cyber-cyan);
-            border: 1px solid rgba(0,243,255,0.4); background: rgba(0,243,255,0.08);
-            padding: 4px 12px; border-radius: 4px; margin-bottom: 25px; display: inline-block;
+            font-family: monospace; font-size: 0.8rem; color: var(--cyber-cyan);
+            border: 1px solid rgba(0,243,255,0.3); background: rgba(0,243,255,0.05);
+            padding: 4px 10px; border-radius: 4px; margin-bottom: 20px; display: inline-block;
         }
 
-        ul { list-style-type: none; margin-bottom: 35px; }
-        li { margin-bottom: 18px; color: #f1f5f9; font-size: 1.1rem; position: relative; padding-left: 30px; }
+        ul { list-style-type: none; }
+        li { margin-bottom: 15px; color: #f1f5f9; font-size: 1.05rem; position: relative; padding-left: 25px; }
         li strong { color: var(--cyber-cyan); }
         li::before { 
-            content: "➔"; position: absolute; left: 0; top: 0; color: var(--cyber-cyan);
-            text-shadow: 0 0 8px var(--cyber-cyan);
+            content: "▪"; position: absolute; left: 0; top: 0; color: var(--cyber-cyan);
+            font-size: 1.1rem; text-shadow: 0 0 8px var(--cyber-cyan);
         }
 
-        /* EXPANDED TECHNICAL DATA CARDS (COMPREHENSIVE BOTTOM SECTIONS) */
+        /* SYSTEM OPERATIONS BLOCKS (BOTTOM MULTI-SECTION DATA GRIDS) */
         .expanded-grid {
             display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 30px; margin-bottom: 60px;
         }
 
         .data-panel {
-            background: rgba(4, 8, 20, 0.95); border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(4, 8, 20, 0.95); border: 1px solid rgba(0, 243, 255, 0.15);
             border-radius: 8px; padding: 30px; box-shadow: 0 15px 35px rgba(0,0,0,0.5);
-            transition: border-color 0.3s;
+            transition: all 0.3s; backdrop-filter: blur(10px);
         }
-        .data-panel:hover { border-color: var(--cyber-magenta); }
-        .data-panel h4 { color: var(--cyber-magenta); font-size: 1.2rem; font-weight: 800; text-transform: uppercase; margin-bottom: 15px; }
-        .data-panel p { color: var(--text-muted); font-size: 1rem; line-height: 1.6; }
+        .data-panel:hover { border-color: var(--cyber-magenta); box-shadow: 0 0 20px rgba(255,0,85,0.15); }
+        .data-panel h4 { color: var(--cyber-magenta); font-size: 1.15rem; font-weight: 800; text-transform: uppercase; margin-bottom: 12px; }
+        .data-panel p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
 
-        /* METALLIC INTELLECTUAL PROPERTY SHIELD */
+        /* PREMIUM METALLIC IP SECURITY SHIELD */
         .ip-shield-banner { 
             background: linear-gradient(135deg, #0f1833 0%, #030612 100%);
             border: 2px solid var(--text-gold); border-radius: 12px; 
             padding: 50px 40px; text-align: center; margin-bottom: 60px; 
-            box-shadow: 0 0 40px rgba(212, 175, 55, 0.2);
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.15);
         }
         .ip-shield-banner h3 { 
-            color: var(--text-gold); font-size: 1.8rem; text-transform: uppercase;
-            letter-spacing: 0.15em; margin-bottom: 20px; font-weight: 900;
+            color: var(--text-gold); font-size: 1.6rem; text-transform: uppercase;
+            letter-spacing: 0.15em; margin-bottom: 15px; font-weight: 900;
         }
-        .ip-shield-banner p { color: #ffffff; font-size: 1.2rem; max-width: 1000px; margin: 0 auto; line-height: 1.7; }
+        .ip-shield-banner p { color: #ffffff; font-size: 1.15rem; max-width: 1000px; margin: 0 auto; line-height: 1.7; }
 
-        /* TRANSACTION ACCESS CONTROL */
+        /* TRANSACTION CONTROL GATEWAY */
         .form-section { 
-            background: rgba(6, 11, 25, 0.95); border: 2px solid rgba(255, 255, 255, 0.08); border-radius: 16px; 
+            background: rgba(6, 11, 25, 0.95); border: 1px solid rgba(0, 243, 255, 0.15); border-radius: 16px; 
             padding: 60px; max-width: 850px; margin: 0 auto; text-align: center;
             box-shadow: 0 30px 60px rgba(0,0,0,0.8);
         }
-        .form-section h2 { justify-content: center; font-size: 2.2rem; margin-bottom: 20px; border: none; padding: 0; }
+        .form-section h2 { justify-content: center; font-size: 2rem; margin-bottom: 15px; border: none; padding: 0; }
 
         .form-group { margin-bottom: 25px; text-align: left; }
-        label { display: block; color: var(--cyber-cyan); font-size: 0.85rem; font-weight: 800; text-transform: uppercase; margin-bottom: 10px; letter-spacing: 0.15em; }
+        label { display: block; color: var(--cyber-cyan); font-size: 0.8rem; font-weight: 800; text-transform: uppercase; margin-bottom: 8px; letter-spacing: 0.15em; }
         input { 
-            width: 100%; padding: 16px; background-color: #03060f; border: 1px solid rgba(255, 255, 255, 0.15); 
-            border-radius: 6px; color: #ffffff; font-size: 1.1rem; transition: all 0.3s;
+            width: 100%; padding: 14px; background-color: #03060f; border: 1px solid rgba(255, 255, 255, 0.15); 
+            border-radius: 6px; color: #ffffff; font-size: 1rem; transition: all 0.3s;
         }
         input:focus { 
-            border-color: var(--cyber-cyan); outline: none; box-shadow: 0 0 15px rgba(0, 243, 255, 0.5); background-color: #061126;
+            border-color: var(--cyber-cyan); outline: none; box-shadow: 0 0 15px rgba(0, 243, 255, 0.4); background-color: #061126;
         }
 
         button { 
             background: linear-gradient(90deg, var(--cyber-cyan) 0%, var(--cyber-blue) 100%);
-            color: #02050d; border: none; padding: 20px 40px; font-size: 1.1rem; font-weight: 900; 
+            color: #02050d; border: none; padding: 18px 40px; font-size: 1.05rem; font-weight: 900; 
             text-transform: uppercase; letter-spacing: 0.15em; cursor: pointer; border-radius: 6px; 
-            width: 100%; box-shadow: 0 6px 25px rgba(0, 243, 255, 0.4); transition: all 0.3s ease;
+            width: 100%; box-shadow: 0 6px 25px rgba(0, 243, 255, 0.3); transition: all 0.3s ease;
         }
-        button:hover { box-shadow: 0 0 40px var(--cyber-cyan); transform: scale(1.01); }
+        button:hover { box-shadow: 0 0 35px var(--cyber-cyan); transform: scale(1.005); }
 
-        footer { text-align: center; color: #536782; font-size: 0.9rem; margin-top: 120px; border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: 40px; }
+        footer { text-align: center; color: #536782; font-size: 0.85rem; margin-top: 100px; border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: 40px; }
 
         @keyframes beacon { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
+        @media (max-width: 900px) {
+            .grid-primary { grid-template-columns: 1fr; }
+            .expanded-grid { grid-template-columns: 1fr; }
+            h1 { font-size: 2.6rem; }
+        }
     </style>
 </head>
 <body>
 
-    <!-- HIGH-VISIBILITY TECH MATRIX LAYER -->
-    <div class="matrix-grid"></div>
-    <div class="cursor-glow" id="radarGlow"></div>
+    <!-- INTERACTIVE VECTOR GRID VECTOR LOGIC CANVAS ENGINE -->
+    <canvas id="interactiveGridCanvas"></canvas>
 
     <div class="container">
-        <!-- HERO BLOCK -->
+        <!-- SYSTEM HERO HEADER -->
         <header>
             <div class="status-node">
                 <div class="status-dot"></div>
-                <span>FEDERAL PATENT REPOSITORIES ENFORCED</span>
+                <span>FEDERAL PATENT PROTECTION ENFORCED</span>
             </div>
             <h1>FutureSurface Technologies</h1>
             <div class="tagline">Active Attenuation Systems</div>
             <p class="intro-block">
-                Engineering high-leverage structural systems that dynamically transform boundary elements from rigid load-bearing states to energy-absorbing configurations in sub-millisecond windows. Operating via decentralized logic microchips embedded directly at the cell layer, our systems permanently eliminate data communication latency, mitigating high-velocity kinetic loads across global enterprise amusement infrastructure and industrial matrices.
+                Engineering high-leverage structural safety systems that dynamically transform boundary elements from rigid load-bearing states to energy-absorbing configurations in sub-millisecond windows. Operating via decentralized logic microchips embedded directly at the cellular layer, our architectures permanently eliminate communication latency, mitigating high-velocity kinetic loads across global enterprise amusement infrastructure and industrial matrices.
             </p>
         </header>
 
-        <!-- PRIMARY SPECIFICATIONS -->
+        <!-- CONFIGURATION DETAILS -->
         <section class="grid-primary">
             <div class="card">
-                <div class="specs-badge">CELL MODULATION RATE // &lt; 5.0ms DELAY LAYER</div>
+                <div class="specs-badge">MODULATION DEFAULTS // &lt; 5.0ms DELAY MATRIX</div>
                 <h2>Cellular Breakaway Grids</h2>
                 <ul>
+                    <li><strong>Decentralized Chip Logic:</strong> Self-contained module blocks running native hardware thread loops to isolate threat calculations instantly.</li>
+                    <li><strong>Horizontal Fasteners:</strong> High-speed internal solenoids executing spatial configuration shifts to pull back connecting link pins.</li>
