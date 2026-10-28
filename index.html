@@ -6,80 +6,75 @@
     <title>FutureSurface Technologies | Active Attenuation Systems</title>
     <style>
         :root {
-            --bg-main: #050811;
-            --bg-card: rgba(16, 23, 41, 0.7);
-            --accent-glow: #00f3ff;
+            --bg-main: #060913;
+            --bg-card: rgba(13, 22, 43, 0.75);
+            --accent-cyan: #00f3ff;
+            --accent-blue: #0077ff;
             --accent-gold: #d4af37;
-            --text-primary: #ffffff;
-            --text-secondary: #8a99ad;
-            --border-color: rgba(0, 243, 255, 0.2);
+            --text-main: #ffffff;
+            --text-muted: #8fa0b5;
+            --grid-line: rgba(0, 243, 255, 0.08);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
         
         body { 
             background-color: var(--bg-main); 
-            color: var(--text-primary); 
+            color: var(--text-main); 
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
             line-height: 1.6; 
             padding: 0;
             overflow-x: hidden;
             background-image: 
-                radial-gradient(circle at 10% 20%, rgba(0, 243, 255, 0.05) 0%, transparent 40%),
-                radial-gradient(circle at 90% 80%, rgba(212, 175, 55, 0.03) 0%, transparent 40%);
+                linear-gradient(var(--grid-line) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+            background-size: 40px 40px;
         }
 
         .container { max-width: 1200px; margin: 0 auto; padding: 60px 20px; }
 
         header { 
             text-align: center; 
-            padding-bottom: 50px; 
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            background: linear-gradient(180deg, rgba(13,22,43,0.9) 0%, rgba(6,9,19,0.5) 100%);
+            border: 1px solid rgba(0, 243, 255, 0.15);
+            border-radius: 8px;
             margin-bottom: 60px; 
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
 
         .brand-badge {
             display: inline-block;
             padding: 6px 16px;
-            background: rgba(0, 243, 255, 0.07);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            color: var(--accent-glow);
+            background: rgba(0, 243, 255, 0.1);
+            border: 1px solid var(--accent-cyan);
+            border-radius: 4px;
+            color: var(--accent-cyan);
             font-size: 0.75rem;
             font-weight: 700;
-            letter-spacing: 0.15em;
+            letter-spacing: 0.2em;
             text-transform: uppercase;
             margin-bottom: 20px;
-            box-shadow: 0 0 15px rgba(0, 243, 255, 0.1);
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.2);
         }
 
         h1 { 
-            font-size: 3.5rem; 
+            font-size: 3.2rem; 
             font-weight: 900; 
-            letter-spacing: -0.03em; 
+            letter-spacing: -0.02em; 
             text-transform: uppercase; 
-            margin-bottom: 15px;
-            background: linear-gradient(135deg, #ffffff 0%, #a3b8cc 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+            color: #ffffff;
         }
 
         .tagline { 
-            color: var(--accent-glow); 
-            font-size: 1.25rem; 
-            font-weight: 600; 
-            text-transform: uppercase; 
-            letter-spacing: 0.2em; 
-            margin-bottom: 30px;
-            text-shadow: 0 0 10px rgba(0, 243, 255, 0.2);
-        }
-
-        .intro-text { 
-            color: var(--text-secondary); 
+            color: var(--text-muted); 
             font-size: 1.2rem; 
-            max-width: 850px; 
-            margin: 0 auto; 
-            text-align: center;
+            font-weight: 500; 
+            text-transform: uppercase; 
+            letter-spacing: 0.25em; 
+            margin-bottom: 25px;
         }
 
         .grid-section { 
@@ -91,87 +86,75 @@
 
         .card { 
             background: var(--bg-card); 
-            border: 1px solid var(--border-color); 
+            border: 1px solid rgba(0, 243, 255, 0.15); 
             border-radius: 8px; 
             padding: 40px; 
             backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-            position: relative;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
         }
 
         .card:hover {
-            border-color: var(--accent-glow);
-            box-shadow: 0 0 30px rgba(0, 243, 255, 0.15);
-            transform: translateY(-4px);
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 30px rgba(0, 243, 255, 0.2);
+            transform: translateY(-2px);
         }
 
         h2 { 
-            color: var(--text-primary); 
-            font-size: 1.6rem; 
+            color: #ffffff; 
+            font-size: 1.5rem; 
             font-weight: 800; 
-            margin-bottom: 25px; 
+            margin-bottom: 20px; 
             text-transform: uppercase; 
             letter-spacing: -0.01em; 
-            display: flex;
-            align-items: center;
+            border-bottom: 1px solid rgba(0, 243, 255, 0.2);
+            padding-bottom: 12px;
         }
 
-        h2::before {
-            content: "";
-            display: inline-block;
-            width: 4px;
-            height: 24px;
-            background: var(--accent-glow);
-            margin-right: 15px;
-            box-shadow: 0 0 10px var(--accent-glow);
-        }
-
-        ul { list-style-type: none; }
+        ul { list-style-type: none; margin-bottom: 30px; }
         
         li { 
-            margin-bottom: 18px; 
-            color: var(--text-secondary); 
+            margin-bottom: 15px; 
+            color: var(--text-muted); 
             font-size: 1.05rem; 
             position: relative; 
             padding-left: 25px; 
         }
 
         li::before { 
-            content: "➔"; 
-            color: var(--accent-glow); 
+            content: "▪"; 
+            color: var(--accent-cyan); 
             position: absolute; 
             left: 0; 
-            top: 0; 
+            top: -2px; 
+            font-size: 1.2rem;
+            text-shadow: 0 0 8px var(--accent-cyan);
         }
 
-        .video-container { 
-            background-color: #020408; 
-            border: 1px solid rgba(255, 255, 255, 0.05); 
+        /* VECTOR GRAPHICS SYSTEM */
+        .graphics-container {
+            width: 100%;
+            background: #020408;
+            border: 1px solid rgba(255,255,255,0.05);
             border-radius: 6px;
-            height: 260px; 
-            margin-top: 30px; 
-            display: flex; 
-            flex-direction: column;
-            align-items: center; 
-            justify-content: center; 
-            color: var(--accent-glow); 
-            font-weight: 700; 
-            text-transform: uppercase; 
-            font-size: 0.85rem; 
-            letter-spacing: 0.1em; 
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             position: relative;
-            overflow: hidden;
         }
 
-        .video-container::after {
-            content: "SECURE SIMULATION ACCESS RESTRICTED";
-            font-size: 0.75rem;
-            color: rgba(255, 0, 0, 0.5);
-            border: 1px solid rgba(255, 0, 0, 0.3);
-            padding: 4px 10px;
-            margin-top: 10px;
+        .telemetry-tag {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            font-family: monospace;
+            font-size: 0.7rem;
+            color: var(--accent-cyan);
+            background: rgba(0,243,255,0.05);
+            padding: 2px 6px;
+            border: 1px solid rgba(0,243,255,0.2);
             border-radius: 2px;
-            background: rgba(255, 0, 0, 0.05);
         }
 
         .ip-banner { 
@@ -181,7 +164,7 @@
             padding: 40px; 
             text-align: center; 
             margin-bottom: 60px; 
-            box-shadow: 0 0 25px rgba(212, 175, 55, 0.05);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
         }
 
         .ip-banner h3 { 
@@ -193,38 +176,37 @@
         }
 
         .ip-banner p { 
-            color: var(--text-secondary); 
+            color: var(--text-muted); 
             font-size: 1.1rem; 
             max-width: 900px; 
             margin: 0 auto; 
-            line-height: 1.7;
         }
 
         .form-section { 
             background: var(--bg-card); 
-            border: 1px solid rgba(255, 255, 255, 0.05); 
+            border: 1px solid rgba(0, 243, 255, 0.15); 
             border-radius: 8px; 
             padding: 50px; 
             max-width: 700px; 
             margin: 0 auto; 
             backdrop-filter: blur(10px);
+            box-shadow: 0 20px 45px rgba(0,0,0,0.5);
+            text-align: center;
         }
 
-        .form-section h2 { justify-content: center; margin-bottom: 15px; }
-        .form-section h2::before { display: none; }
+        .form-section h2 { border: none; padding: 0; margin-bottom: 15px; }
 
         .form-section p { 
-            color: var(--text-secondary); 
+            color: var(--text-muted); 
             margin-bottom: 35px; 
             font-size: 1.1rem; 
-            text-align: center;
         }
 
         .form-group { margin-bottom: 25px; text-align: left; }
         
         label { 
             display: block; 
-            color: var(--accent-glow); 
+            color: var(--accent-cyan); 
             font-size: 0.8rem; 
             font-weight: 700; 
             text-transform: uppercase; 
@@ -238,19 +220,18 @@
             background-color: #020408; 
             border: 1px solid rgba(255, 255, 255, 0.1); 
             border-radius: 4px; 
-            color: var(--text-primary); 
+            color: #ffffff; 
             font-size: 1rem; 
-            transition: all 0.2s ease;
         }
 
         input:focus { 
-            border-color: var(--accent-glow); 
+            border-color: var(--accent-cyan); 
             outline: none; 
             box-shadow: 0 0 10px rgba(0, 243, 255, 0.2);
         }
 
         button { 
-            background: linear-gradient(135deg, var(--accent-glow) 0%, #00a8ff 100%);
+            background: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-blue) 100%);
             color: #020408; 
             border: none; 
             padding: 16px 30px; 
@@ -262,12 +243,12 @@
             border-radius: 4px; 
             margin-top: 15px; 
             width: 100%; 
-            box-shadow: 0 4px 15px rgba(0, 243, 255, 0.2);
+            box-shadow: 0 4px 15px rgba(0, 243, 255, 0.3);
             transition: all 0.2s ease;
         }
 
         button:hover { 
-            box-shadow: 0 0 25px var(--accent-glow);
+            box-shadow: 0 0 25px var(--accent-cyan);
             transform: translateY(-1px);
         }
 
@@ -282,23 +263,30 @@
 
         @media (max-width: 768px) {
             .grid-section { grid-template-columns: 1fr; }
-            h1 { font-size: 2.5rem; }
+            h1 { font-size: 2.3rem; }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <div class="brand-badge">Secure Enterprise Portal</div>
+            <div class="brand-badge">SYSTEM INTEGRATION NODE</div>
             <h1>FutureSurface Technologies</h1>
             <div class="tagline">Active Attenuation Systems</div>
-            <p class="intro-text">
+            <p style="color: #ffffff; font-size: 1.15rem; max-width: 900px; margin: 0 auto; line-height: 1.7;">
                 Developing intelligent, multi-layered structural systems engineered to transform surface boundaries from load-bearing rigid states to energy-attenuating configurations in sub-millisecond windows. By deploying decentralized edge computing microprocessors directly within independent layers, our architectures eliminate communication delay, mitigating high-velocity kinetic impacts across automated networks, athletic spaces, and industrial matrices.
             </p>
         </header>
 
         <section class="grid-section">
+            <!-- CARD 1: CELLULAR GRIDS -->
             <div class="card">
-                <h2>Cellular Breakaway Configurations</h2>
+                <h2>Cellular Breakaway Grids</h2>
                 <ul>
-                    <li><strong>Decentralized Edge Processing:</strong> Self-contained module cells running native micro-logic threat loops to keep response latency below 5 milliseconds.</li>
+                    <li><strong>Decentralized Edge Logic:</strong> Self-contained module cells running native micro-threat polling loops to keep response latency below 5 milliseconds.</li>
+                    <li><strong>Synchronized Fasteners:</strong> Electronic solenoids executing localized state changes, retracting dynamic horizontal interlocking connection pins [source: 1.2.1].</li>
+                    <li><strong>Zoned Deflection Perimeter:</strong> Affected independent cells drop vertically to capture transient kinetic loads while surrounding tiles retain load [source: 1.2.1].</li>
+                </ul>
+                <div class="graphics-container">
+                    <div class="telemetry-tag">SYS_DIAG: CELL_V1</div>
+                    <!-- TECHNICAL DIAGRAM SVG -->
