@@ -3,83 +3,147 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FutureSurface Technologies | Active Attenuation Matrix</title>
+    <title>FutureSurface Technologies</title>
     <style>
         :root {
-            --bg-main: #02050d;
-            --bg-card: rgba(8, 14, 30, 0.95);
+            --bg-main: #02040a;
             --cyber-cyan: #00f3ff;
-            --cyber-blue: #0066ff;
-            --cyber-magenta: #ff0055;
-            --text-white: #ffffff;
-            --text-muted: #94a9c4;
+            --text-muted: #8fa0b5;
+            --glass-menu: rgba(4, 8, 16, 0.85);
+            --card-bg: rgba(10, 16, 32, 0.8);
         }
+
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { background-color: var(--bg-main); color: var(--text-white); font-family: sans-serif; min-height: 100vh; overflow-x: hidden; }
-        #interactiveGridCanvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; background-color: var(--bg-main); pointer-events: none; }
-        .container { max-width: 1100px; margin: 0 auto; padding: 60px 20px; position: relative; }
-        header { text-align: center; padding: 60px 40px; background: rgba(6, 11, 25, 0.85); border: 2px solid var(--cyber-cyan); border-radius: 12px; margin-bottom: 60px; }
-        h1 { font-size: 3.5rem; text-transform: uppercase; margin-bottom: 15px; }
-        .tagline { color: var(--cyber-cyan); font-size: 1.3rem; font-weight: 700; text-transform: uppercase; margin-bottom: 30px; }
-        .intro-block { color: var(--text-muted); font-size: 1.15rem; max-width: 900px; margin: 0 auto; }
-        .grid-primary { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 60px; }
-        .card { background: var(--bg-card); border: 1px solid rgba(0, 243, 255, 0.2); border-radius: 12px; padding: 45px; }
-        h2 { color: #ffffff; font-size: 1.5rem; margin-bottom: 25px; border-left: 4px solid var(--cyber-cyan); padding-left: 15px; }
+        
+        body { 
+            background-color: var(--bg-main); 
+            color: #ffffff; 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            line-height: 1.6; 
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
+            padding-top: 100px; /* Leaves clean room for fixed Apple/Tesla header style */
+        }
+
+        /* LIVING 3D PARTICLE MATRIX CANVAS - HIGH VISIBILITY DEFAULTS */
+        #interactiveGridCanvas {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1;
+            background-color: var(--bg-main); pointer-events: none;
+        }
+
+        /* FIXED TOP NAV BAR (APPLE / TESLA LAYOUT STRATEGY) */
+        .top-nav {
+            position: fixed; top: 0; left: 0; width: 100%; height: 70px;
+            background: var(--glass-menu); border-bottom: 1px solid rgba(0, 243, 255, 0.25);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            z-index: 1000; display: flex; align-items: center; justify-content: space-between;
+            padding: 0 40px; box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .logo-area { display: flex; align-items: center; gap: 15px; }
+        
+        /* PLACEMENT SLOT FOR YOUR LOGO IMAGE FILE */
+        .logo-img { max-height: 38px; width: auto; display: block; }
+        
+        .logo-text { 
+            font-size: 1.25rem; font-weight: 800; letter-spacing: 2px; 
+            text-transform: uppercase; color: #ffffff; 
+        }
+
+        .nav-status {
+            font-family: monospace; font-size: 0.75rem; color: var(--cyber-cyan);
+            border: 1px solid rgba(0, 243, 255, 0.3); background: rgba(0, 243, 255, 0.05);
+            padding: 4px 12px; border-radius: 4px; text-transform: uppercase; letter-spacing: 1px;
+        }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 40px 20px; position: relative; }
+
+        /* THE PRODUCT DISPLAY CONTAINER */
+        .hero-panel { 
+            text-align: center; padding: 60px 40px; background: var(--card-bg); 
+            border: 1px solid rgba(0, 243, 255, 0.2); border-radius: 12px;
+            margin-bottom: 50px; backdrop-filter: blur(15px); box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+        h1 { font-size: 3rem; text-transform: uppercase; margin-bottom: 15px; font-weight: 900; letter-spacing: -1px; }
+        .tagline { color: var(--cyber-cyan); font-size: 1.25rem; font-weight: 700; text-transform: uppercase; letter-spacing: 4px; margin-bottom: 25px; }
+        .intro-text { color: var(--text-muted); font-size: 1.15rem; max-width: 850px; margin: 0 auto; }
+
+        /* MULTI-GRID SPECIFICATION MODULES */
+        .grid-primary { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 50px; }
+        .card { background: var(--card-bg); border: 1px solid rgba(0, 243, 255, 0.15); border-radius: 12px; padding: 45px; backdrop-filter: blur(15px); }
+        h2 { color: #ffffff; font-size: 1.5rem; margin-bottom: 20px; text-transform: uppercase; border-left: 4px solid var(--cyber-cyan); padding-left: 15px; }
         ul { list-style-type: none; } li { margin-bottom: 15px; color: #f1f5f9; padding-left: 25px; position: relative; }
-        li::before { content: "▪"; position: absolute; left: 0; color: var(--cyber-cyan); }
-        .expanded-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 30px; margin-bottom: 60px; }
-        .data-panel { background: rgba(4, 8, 20, 0.95); border: 1px solid rgba(0, 243, 255, 0.2); border-radius: 8px; padding: 30px; }
-        .data-panel h4 { color: var(--cyber-magenta); text-transform: uppercase; margin-bottom: 12px; }
+        li::before { content: "▪"; position: absolute; left: 0; color: var(--cyber-cyan); font-size: 1.2rem; }
+
+        /* EXPANDED DATA GRIDS */
+        .expanded-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 30px; margin-bottom: 50px; }
+        .data-panel { background: rgba(4, 8, 20, 0.95); border: 1px solid rgba(0, 243, 255, 0.15); border-radius: 8px; padding: 30px; backdrop-filter: blur(10px); }
+        .data-panel h4 { color: var(--cyber-cyan); text-transform: uppercase; margin-bottom: 12px; font-size: 1.05rem; letter-spacing: 1px; }
         .data-panel p { color: var(--text-muted); font-size: 0.95rem; }
-        footer { text-align: center; color: #536782; font-size: 0.85rem; margin-top: 100px; padding-top: 40px; }
+
+        /* APPLICATION TRACKING CONTROL INTERFACE */
+        .form-section { background: var(--card-bg); border: 1px solid rgba(0, 243, 255, 0.2); border-radius: 12px; padding: 50px; max-width: 800px; margin: 0 auto; backdrop-filter: blur(15px); text-align: center; }
+        .form-group { margin-bottom: 25px; text-align: left; }
+        label { display: block; color: var(--cyber-cyan); font-size: 0.8rem; font-weight: 800; text-transform: uppercase; margin-bottom: 8px; letter-spacing: 1px; }
+        input { width: 100%; padding: 14px; background-color: #03060f; border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 6px; color: #ffffff; font-size: 1rem; }
+        input:focus { border-color: var(--cyber-cyan); outline: none; box-shadow: 0 0 12px rgba(0, 243, 255, 0.4); }
+        button { background: linear-gradient(90deg, var(--cyber-cyan) 0%, #0066ff 100%); color: #02040a; border: none; padding: 18px 40px; font-size: 1.05rem; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; border-radius: 6px; width: 100%; box-shadow: 0 4px 15px rgba(0, 243, 255, 0.3); transition: all 0.2s; }
+        button:hover { box-shadow: 0 0 30px var(--cyber-cyan); }
+        footer { text-align: center; color: #536782; font-size: 0.85rem; margin-top: 100px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.05); }
     </style>
 </head>
 <body>
+
+    <!-- INTERACTIVE CANVAS NETWORK LAYER -->
     <canvas id="interactiveGridCanvas"></canvas>
+
+    <!-- FIXED BRAND HEADER (TESLA & APPLE BRAND STYLING POSITION) -->
+    <nav class="top-nav">
+        <div class="logo-area">
+            <!-- LOGO IMAGE EMBED FIELD (GitHub reads this path natively) -->
+            <img src="logo.png" alt="" class="logo-img" onerror="this.style.display='none'">
+            <span class="logo-text">FutureSurface</span>
+        </div>
+        <div class="nav-status">USPTO Priority Secure Node</div>
+    </nav>
+
     <div class="container">
-        <header>
+        <!-- SYSTEM BRIEFING INTRO -->
+        <header class="hero-panel">
             <h1>FutureSurface Technologies</h1>
             <div class="tagline">Active Attenuation Systems</div>
-            <p class="intro-block">Engineering high-leverage structural safety systems that dynamically transform boundary elements...</p>
+            <p class="intro-text">Engineering high-leverage structural safety platforms that dynamically transform target boundaries from rigid load-bearing states to energy-absorbing configurations in sub-millisecond windows [17/501,355].</p>
         </header>
+
+        <!-- HARDWARE MATRIX -->
         <section class="grid-primary">
-            <div class="card"><h2>Cellular Breakaway Grids</h2><ul><li><strong>Decentralized Logic:</strong> Instant threat isolation.</li></ul></div>
-            <div class="card"><h2>Dynamic Subsurface Arrays</h2><ul><li><strong>Fluid Attenuation:</strong> Swallows rebound velocity.</li></ul></div>
+            <div class="card">
+                <h2>Cellular Breakaway Grids</h2>
+                <ul>
+                    <li><strong>Decentralized Logic Array:</strong> Self-contained module cells running native hardware thread loops to isolate threat calculations instantly [17/501,355].</li>
+                    <li><strong>Horizontal Solenoids:</strong> High-speed internal electromechanical locking units executing sub-surface frame shifts to pull back links [17/501,355].</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h2>Dynamic Subsurface Arrays</h2>
+                <ul>
+                    <li><strong>Fluid Attenuation Jackets:</strong> Internal containment bladders charged with responsive phase-changing fluids or gels to swallow rebound completely [Specs_TUP64682.pdf].</li>
+                    <li><strong>High-Torque Winch Loops:</strong> Subsurface mechanical tension lines driven by stepper motors to instantly alter canvas displacement paths [Specs_TUP64682.pdf].</li>
+                </ul>
+            </div>
         </section>
+
+        <!-- 1-6 OPERATIONS SECTIONS -->
+        <h3 style="text-transform: uppercase; letter-spacing: 3px; font-size: 1.2rem; text-align: center; margin-bottom: 30px;">⚡ SYSTEM INTEGRATION OPERATIONS MAPPING</h3>
         <section class="expanded-grid">
-            <div class="data-panel"><h4>1. Enterprise Rollout</h4><p>Commercial park safety integration.</p></div>
-            <div class="data-panel"><h4>2. Academic Research</h4><p>University engineering lab development.</p></div>
-            <div class="data-panel"><h4>3. Hardware Framework</h4><p>Pneumatic aperture flow control.</p></div>
+            <div class="data-panel"><h4>1. Enterprise Park Rollout</h4><p>Designed specifically to protect commercial trampoline park chains by dropping catastrophic fracture and litigation liability risks to zero without increasing overhead footprints [17/501,355].</p></div>
+            <div class="data-panel"><h4>2. Academic Research Core</h4><p>Active Spring 2027 Capstone tracks across Northeastern, WPI, and BU provide thousands of hours of free, faculty-supervised laboratory development and 3D CAD modeling [17/501,355].</p></div>
+            <div class="data-panel"><h4>3. Technical Hardware Framework</h4><p>Eliminates traditional spring rebound risks completely through variable-porosity pneumatic aperture flow control vanes, trapping kinetic loads safely flat [Specs_TUP64682.pdf].</p></div>
+            <div class="data-panel"><h4>4. Non-Dilutive Federal Funding</h4><p>Backed by active Small Business Innovation Research (SBIR) Phase I federal grant tracks targeting up to $250,000 in non-repayable government R&D capital [17/501,355].</p></div>
+            <div class="data-panel"><h4>5. Field-Of-Use Territorial Bounds</h4><p>Licensing architecture enforces strict industrial boundaries. Commercial amusement park assets remain completely independent of concrete skatepark or aerospace applications [17/501,355].</p></div>
+            <div class="data-panel"><h4>6. Multi-Tenant Royalty Bidding</h4><p>Blueprints are structured under a Non-Exclusive Territorial framework, enabling concurrent monetization across competing global franchises backed by minimum annual royalty guarantees [17/501,355].</p></div>
         </section>
-        <footer>&copy; 2026 FutureSurface Technologies. All Rights Reserved.</footer>
-    </div>
-    <script>
-        const canvas = document.getElementById('interactiveGridCanvas');
-        const ctx = canvas.getContext('2d');
-        let width = canvas.width = window.innerWidth;
-        let height = canvas.height = window.innerHeight;
-        const mouse = { x: null, y: null, radius: 220 };
-        window.addEventListener('resize', () => { width = canvas.width = window.innerWidth; height = canvas.height = window.innerHeight; });
-        window.addEventListener('mousemove', (e) => { mouse.x = e.clientX; mouse.y = e.clientY; });
-        window.addEventListener('mouseleave', () => { mouse.x = null; mouse.y = null; });
-        function animate() {
-            ctx.clearRect(0, 0, width, height);
-            ctx.strokeStyle = 'rgba(0, 243, 255, 0.25)';
-            for (let y = 0; y < height; y += 45) {
-                ctx.beginPath();
-                for (let x = 0; x < width; x += 15) {
-                    let dy = 0;
-                    if (mouse.x !== null && mouse.y !== null) {
-                        const dist = Math.hypot(x - mouse.x, y - mouse.y);
-                        if (dist < mouse.radius) dy = (y - mouse.y) * -0.18 * ((mouse.radius - dist) / mouse.radius);
-                    }
-                    x === 0 ? ctx.moveTo(x, y + dy) : ctx.lineTo(x, y + dy);
-                }
-                ctx.stroke();
-            }
-            requestAnimationFrame(animate);
-        }
-        animate();
-    </script>
-</body>
-</html>
+
+        <!-- INTAKE CONSOLE -->
+        <section class="form-section">
