@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FutureSurface Technologies | Smart Surface Systems</title>
+    <title>FutureSurface Technologies | Active Attenuation Matrix</title>
     <style>
         :root {
             --bg-dark: #030712;
@@ -78,6 +78,7 @@
             position: relative;
         }
 
+        /* Ambient Glow Behind Hero */
         .hero::before {
             content: '';
             position: absolute;
@@ -123,6 +124,7 @@
             margin: 0 auto 2.5rem auto;
         }
 
+        /* Call To Action Buttons */
         .cta-group {
             display: flex;
             gap: 1rem;
@@ -161,15 +163,11 @@
             border-color: var(--text-secondary);
         }
 
-        /* Main Container */
+        /* Container & Grid Sections */
         .main-content {
             max-width: 1200px;
             margin: 0 auto;
             padding: 4rem 2rem;
-        }
-
-        .grid-section {
-            margin-bottom: 6rem;
         }
 
         .section-header {
@@ -189,58 +187,12 @@
             font-size: 1rem;
         }
 
-        /* Applications Grid Section */
-        .app-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .app-card {
-            background-color: var(--bg-surface);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 2.5rem;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .app-card:hover {
-            border-color: var(--accent-secondary);
-            transform: translateY(-4px);
-            box-shadow: 0 12px 30px -10px rgba(59, 130, 246, 0.15);
-        }
-
-        .app-card h3 {
-            font-size: 1.35rem;
-            margin-bottom: 0.75rem;
-            font-weight: 700;
-        }
-
-        .app-card .benefits {
-            list-style: none;
-            margin-top: 1rem;
-        }
-
-        .app-card .benefits li {
-            font-size: 0.95rem;
-            color: var(--text-primary);
-            margin-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .app-card .benefits li::before {
-            content: "✓";
-            color: var(--accent-primary);
-            font-weight: bold;
-        }
-
         /* Core Technology Cards Setup */
         .tech-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
             gap: 2rem;
+            margin-bottom: 6rem;
         }
 
         .tech-card {
@@ -367,3 +319,32 @@
             }
         }
     </style>
+</head>
+<body>
+
+    <!-- Professional Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">FutureSurface</div>
+        <ul class="nav-links">
+            <li><a href="#technology">Technology</a></li>
+            <li><a href="#deployment">Deployment</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <a href="#contact" class="btn btn-secondary" style="padding: 0.5rem 1rem; font-size: 0.85rem;">Request Briefing</a>
+    </nav>
+
+    <!-- High-Converting Hero Section -->
+    <header class="hero">
+        <span class="badge">Active Attenuation Systems</span>
+        <h1>Next-generation safety mechanics for dynamic boundary protection.</h1>
+        <p>Engineering high-leverage structural safety systems designed to absorb threat kinetic energy and instantly isolate system grid vulnerabilities.</p>
+        <div class="cta-group">
+            <a href="#technology" class="btn btn-primary">Explore Our Tech</a>
+            <a href="#contact" class="btn btn-secondary">Download Whitepaper</a>
+        </div>
+    </header>
+
+    <main class="main-content">
+        
+        <!-- Technology Section -->
+        <section id="technology" class="grid-section">
