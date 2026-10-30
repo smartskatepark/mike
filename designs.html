@@ -20,10 +20,7 @@
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'Inter', -apple-system, sans-serif; background-color: var(--bg-dark); color: var(--text-primary); line-height: 1.6; padding-top: 120px; }
         
-        /* THE ALIGNED NAVIGATION FIX CONTAINER */
-        .nav-wrapper {
-            position: fixed; top: 0; left: 0; width: 100%; border-bottom: 1px solid var(--border); background: rgba(3, 7, 18, 0.9); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); z-index: 1000;
-        }
+        .nav-wrapper { position: fixed; top: 0; left: 0; width: 100%; border-bottom: 1px solid var(--border); background: rgba(3, 7, 18, 0.9); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); z-index: 1000; }
         .navbar { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 2rem; max-width: 1200px; margin: 0 auto; width: 100%; }
         .logo { font-weight: 800; font-size: 1.25rem; background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-decoration: none; }
         .nav-links { display: flex; gap: 2rem; list-style: none; }
@@ -54,7 +51,6 @@
 </head>
 <body>
 
-    <!-- CORRECTED ALIGNED NAVIGATION BAR -->
     <div class="nav-wrapper">
         <nav class="navbar">
             <a href="index.html" class="logo">FutureSurface</a>
@@ -75,7 +71,7 @@
 
     <main class="blueprint-container">
 
-        <!-- Blueprint 1: Connected Sections Model -->
+        <!-- Blueprint 1: Connected Sections Model (Enforced .jpg tracking path) -->
         <section class="blueprint-row">
             <div class="blueprint-media">
                 <img src="connected.jpg" class="blueprint-image" alt="Connected Sections Mechanics">
@@ -91,7 +87,7 @@
             </div>
         </section>
 
-        <!-- Blueprint 2: Trampoline Model -->
+        <!-- Blueprint 2: Trampoline Model (Enforced .jpg tracking path) -->
         <section class="blueprint-row">
             <div class="blueprint-media">
                 <img src="trampoline.jpg" class="blueprint-image" alt="Trampoline Subsurface Layout">
@@ -107,7 +103,7 @@
             </div>
         </section>
 
-        <!-- Blueprint 3: Smart Liquid Model -->
+        <!-- Blueprint 3: Smart Liquid Model (Enforced .jpg tracking path) -->
         <section class="blueprint-row">
             <div class="blueprint-media">
                 <img src="liquid.jpg" class="blueprint-image" alt="Smart Liquid Shock Absorption">
@@ -123,7 +119,7 @@
             </div>
         </section>
 
-        <!-- Blueprint 4: High-Pressure Air Model -->
+        <!-- Blueprint 4: High-Pressure Air Model (Enforced .jpg tracking path) -->
         <section class="blueprint-row">
             <div class="blueprint-media">
                 <img src="air.jpg" class="blueprint-image" alt="Pneumatic High Pressure Air Matrix">
