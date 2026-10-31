@@ -123,7 +123,6 @@
 
         .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
 
-        /* FIXED CLEAN WHITE NAVIGATION BUTTON STYLING */
         .btn-nav {
             display: inline-block;
             padding: 0.5rem 1rem;
@@ -137,10 +136,7 @@
             transition: all 0.2s ease;
         }
 
-        .btn-nav:hover {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: #ffffff;
-        }
+        .btn-nav:hover { background: rgba(255, 255, 255, 0.05); border-color: #ffffff; }
 
         .btn-secondary {
             background: transparent;
@@ -150,7 +146,7 @@
 
         .btn-secondary:hover { background: rgba(255, 255, 255, 0.05); border-color: #ffffff; }
 
-        /* B2B SECTOR HUB LAYOUT SECTION */
+        /* B2B SECTOR CONTAINER AREA */
         .main-content {
             max-width: 1200px;
             margin: 0 auto;
@@ -176,9 +172,10 @@
             margin: 0 auto;
         }
 
+        /* 3-COLUMN LAYOUT MATRIX */
         .sector-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
             margin-top: 2rem;
         }
@@ -192,6 +189,9 @@
             text-decoration: none;
             color: inherit;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .sector-card:hover {
@@ -234,7 +234,8 @@
             font-size: 0.875rem;
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 968px) {
+            .sector-grid { grid-template-columns: 1fr; }
             .navbar, footer { flex-direction: column; gap: 1.5rem; text-align: center; }
             .hero h1 { font-size: 2.3rem; }
             .cta-group { flex-direction: column; }
@@ -243,7 +244,7 @@
 </head>
 <body>
 
-    <!-- Repaired Center-Aligned Navigation Header Bar Menu -->
+    <!-- Center-Aligned Header Menu Bar Node -->
     <div class="nav-wrapper">
         <nav class="navbar">
             <a href="#" class="logo">FutureSurface</a>
@@ -267,7 +268,7 @@
         </div>
     </header>
 
-    <!-- B2B SECTOR PIPELINE HUB -->
+    <!-- VERIFIED THREE-CARD MARKET HUB -->
     <main class="main-content">
         <section class="sector-hub">
             <div class="section-header">
@@ -276,17 +277,17 @@
             </div>
 
             <div class="sector-grid">
-                <!-- Sector 1: Athletics -->
+                <!-- Card 1: Sports Facilities -->
                 <a href="applications.html" class="sector-card">
-                    <h3>Athletic Facilities</h3>
-                    <p>Optimizing player protection grids inside stadium fields, court launch matrices, and high-velocity boundary boards.</p>
+                    <div>
+                        <h3>Sports Facilities</h3>
+                        <p>Adaptive impact arrays for turf fields and skate structures.</p>
+                    </div>
                     <span class="sector-link">View Systems →</span>
                 </a>
 
-                <!-- Sector 2: Industrial -->
+                <!-- Card 2: Industrial Zones -->
                 <a href="applications.html" class="sector-card">
-                    <h3>Industrial Logistics</h3>
-                    <p>Securing high-risk commercial warehouse flooring zones with microchip-controlled pneumatic safety cells.</p>
-                    <span class="sector-link">View Systems →</span>
-                </a>
-
+                    <div>
+                        <h3>Industrial Zones</h3>
+                        <p>Engineered to shield workers and equipment from structural drop impacts.</p>
