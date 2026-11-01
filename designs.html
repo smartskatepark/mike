@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FutureSurface Technologies | Engineering Designs Archive</title>
+    <title>FutureSurface Technologies | Engineering & Designs</title>
     <style>
         :root {
             --bg-dark: #030712;
@@ -24,29 +24,43 @@
         .navbar { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 2rem; max-width: 1200px; margin: 0 auto; width: 100%; }
         .logo { font-weight: 800; font-size: 1.25rem; background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-decoration: none; }
         .nav-links { display: flex; gap: 2rem; list-style: none; }
-        .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; font-weight: 500; }
-        .nav-links a.active { color: var(--accent-primary); }
+        .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.2s ease; }
+        .nav-links a:hover, .nav-links a.active { color: var(--accent-primary); }
         .btn-nav { display: inline-block; padding: 0.5rem 1rem; font-weight: 600; border-radius: 8px; text-decoration: none; font-size: 0.85rem; background: transparent; color: var(--text-primary); border: 1px solid var(--border); }
 
-        .showcase-header { max-width: 1200px; margin: 0 auto; padding: 4rem 2rem 2rem 2rem; text-align: center; }
-        .badge { display: inline-block; padding: 0.35rem 1rem; background: rgba(6, 182, 212, 0.1); border: 1px solid rgba(6, 182, 212, 0.2); color: var(--accent-primary); border-radius: 9999px; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; margin-bottom: 1.5rem; }
-        .showcase-header h1 { font-size: 3.2rem; font-weight: 800; line-height: 1.2; margin-bottom: 1.5rem; }
-        .showcase-header p { font-size: 1.2rem; color: var(--text-secondary); max-width: 800px; margin: 0 auto; }
+        .design-header { max-width: 1200px; margin: 0 auto; padding: 4rem 2rem 2rem 2rem; text-align: center; }
+        .badge { display: inline-block; padding: 0.35rem 1.25rem; background: rgba(6, 182, 212, 0.1); border: 1px solid rgba(6, 182, 212, 0.25); color: var(--accent-primary); border-radius: 9999px; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; margin-bottom: 1.5rem; letter-spacing: 0.05em; white-space: nowrap; }
+        .design-header h1 { font-size: 3.2rem; font-weight: 800; line-height: 1.2; margin-bottom: 1.5rem; letter-spacing: -0.03em; }
+        .design-header p { font-size: 1.2rem; color: var(--text-secondary); max-width: 850px; margin: 0 auto; line-height: 1.7; }
 
-        .blueprint-container { max-width: 1200px; margin: 0 auto; padding: 4rem 2rem; }
-        .blueprint-row { display: flex; align-items: center; gap: 4rem; margin-bottom: 8rem; }
-        .blueprint-row:nth-child(even) { flex-direction: row-reverse; }
-        .blueprint-media { flex: 1.2; }
-        .blueprint-image { width: 100%; height: auto; border-radius: 16px; border: 1px solid rgba(6, 182, 212, 0.25); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5); display: block; }
-        .blueprint-info { flex: 1; }
-        .blueprint-info h2 { font-size: 2.2rem; font-weight: 800; margin-bottom: 1rem; }
-        .blueprint-info p { color: var(--text-secondary); font-size: 1.1rem; line-height: 1.7; margin-bottom: 1.5rem; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 4rem 2rem; }
+        .design-grid { display: grid; grid-template-columns: 1fr; gap: 4rem; }
         
-        .tech-specs-list { list-style: none; }
-        .tech-specs-list li { position: relative; padding-left: 1.5rem; margin-bottom: 0.75rem; font-size: 0.95rem; }
-        .tech-specs-list li::before { content: "▪"; position: absolute; left: 0; color: var(--accent-primary); }
+        .spec-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4rem; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 4rem; }
+        .spec-row:last-child { border-bottom: none; }
+        
+        .spec-text h2 { font-size: 2rem; font-weight: 800; margin-bottom: 1rem; letter-spacing: -0.02em; }
+        .spec-text p { color: var(--text-secondary); font-size: 1.1rem; line-height: 1.7; margin-bottom: 1.5rem; }
+        
+        .tech-list { list-style: none; }
+        .tech-list li { margin-bottom: 0.75rem; padding-left: 1.5rem; position: relative; color: var(--text-secondary); }
+        .tech-list li::before { content: "→"; position: absolute; left: 0; color: var(--accent-primary); font-weight: bold; }
+        
+        .blueprint-visual { width: 100%; border-radius: 16px; border: 1px solid var(--border); background: var(--bg-surface); padding: 3rem; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: center; min-height: 320px; }
+        .blueprint-line { position: absolute; border: 1px dashed rgba(6, 182, 212, 0.15); }
+        .line-h { left: 0; width: 100%; height: 0; }
+        .line-v { top: 0; width: 0; height: 100%; }
+        
+        .layer-box { border: 1px solid rgba(6, 182, 212, 0.3); background: rgba(6, 182, 212, 0.03); padding: 1.5rem; border-radius: 8px; font-family: monospace; font-size: 0.85rem; color: var(--accent-primary); letter-spacing: 0.05em; text-transform: uppercase; text-center: center; box-shadow: 0 0 20px rgba(6, 182, 212, 0.05); }
+
         footer { max-width: 1200px; margin: 4rem auto 0 auto; padding: 3rem 2rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; color: var(--text-secondary); font-size: 0.875rem; }
-        @media (max-width: 968px) { .blueprint-row, .blueprint-row:nth-child(even) { flex-direction: column; gap: 2rem; } .navbar, footer { flex-direction: column; gap: 1.5rem; text-align: center; } .showcase-header h1 { font-size: 2.4rem; } }
+        
+        @media (max-width: 968px) { 
+            .spec-row { grid-template-columns: 1fr; gap: 2rem; } 
+            .navbar, footer { flex-direction: column; gap: 1.5rem; text-align: center; } 
+            .design-header h1 { font-size: 2.2rem; }
+            .badge { padding: 0.35rem 1rem; font-size: 0.75rem; display: inline-flex; justify-content: center; }
+        }
     </style>
 </head>
 <body>
@@ -56,90 +70,63 @@
             <a href="index.html" class="logo">FutureSurface</a>
             <ul class="nav-links">
                 <li><a href="#" class="active">Designs</a></li>
-                <li><a href="index.html#applications">Applications</a></li>
+                <li><a href="applications.html">Applications</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
-            <a href="contact.html" class="btn-nav">Request Portfolio</a>
+            <a href="request.html" class="btn-nav">Request Portfolio</a>
         </nav>
     </div>
 
-    <header class="showcase-header">
-        <span class="badge">Active Telemetry Blueprints</span>
-        <h1>Proprietary Safety Architectures</h1>
-        <p>Advanced engineering layouts tracking force deflection parameters live [17/501,355].</p>
+    <header class="design-header">
+        <span class="badge">Architecture & Mechanics</span>
+        <h1>Technical System Designs</h1>
+        <p>Explore the specialized sub-layer mechanics, responsive attenuation structures, and active software arrays built into the FutureSurface protection framework.</p>
     </header>
 
-    <main class="blueprint-container">
+    <main class="container">
+        <div class="design-grid">
 
-        <!-- Blueprint 1: Connected Sections Model (Fixed Local Server Path) -->
-        <section class="blueprint-row">
-            <div class="blueprint-media">
-                <img src="./connected.jpg" class="blueprint-image" alt="Connected Sections Mechanics">
+            <div class="spec-row">
+                <div class="spec-text">
+                    <h2>Active Attenuation Matrix</h2>
+                    <p>Features state-shifting fluid containment zones engineered to modify viscosity metrics in less than 5 milliseconds when a target kinetic signature triggers cell response pathways.</p>
+                    <ul class="tech-list">
+                        <li>Thixotropic smart cell composition arrays</li>
+                        <li>Variable-porosity stabilization release gates</li>
+                        <li>High-load structural retention boundaries</li>
+                    </ul>
+                </div>
+                <div class="blueprint-visual">
+                    <div class="blueprint-line line-h" style="top: 25%;"></div>
+                    <div class="blueprint-line line-h" style="top: 75%;"></div>
+                    <div class="blueprint-line line-v" style="left: 30%;"></div>
+                    <div class="blueprint-line line-v" style="left: 70%;"></div>
+                    <div class="layer-box">DAMPING INTERFACE MODULE</div>
+                </div>
             </div>
-            <div class="blueprint-info">
-                <h2>Connected Sections Model</h2>
-                <p>Features independent, interlocking dark gray composite tile blocks that monitor force signatures. Upon impact calculations, adjacent lateral connection link pins immediately disengage, allowing individual targeted module cells to drop vertically while surrounding sections maintain structural rigidity.</p>
-                <ul class="tech-specs-list">
-                    <li>Sub-millisecond microprocessor-controlled separation loops [17/501,355]</li>
-                    <li>Solenoid-driven horizontal locking bolt fasteners [17/501,355]</li>
-                    <li>Mechanical interlock free-fall load attenuation panels [17/501,355]</li>
-                </ul>
-            </div>
-        </section>
 
-        <!-- Blueprint 2: Trampoline Model (Fixed Local Server Path) -->
-        <section class="blueprint-row">
-            <div class="blueprint-media">
-                <img src="./trampoline.jpg" class="blueprint-image" alt="Trampoline Subsurface Layout">
+            <div class="spec-row">
+                <div class="blueprint-visual">
+                    <div class="blueprint-line line-h" style="top: 50%;"></div>
+                    <div class="blueprint-line line-v" style="left: 50%;"></div>
+                    <div class="layer-box" style="border-color: rgba(59, 130, 246, 0.3); color: var(--accent-secondary);">PNEUMATIC ACTUATION NODE</div>
+                </div>
+                <div class="spec-text">
+                    <h2>Pneumatic Control System</h2>
+                    <p>Utilizes discrete distributed solenoid micro-valves paired with composite safety membrane frameworks to deliver high-velocity surface state changes without generating physical bounce-back profiles.</p>
+                    <ul class="tech-list">
+                        <li>Micro-second telemetry processing meshes</li>
+                        <li>Fast-venting air displacement cell walls</li>
+                        <li>High-cycle pneumatic performance lifespans</li>
+                    </ul>
+                </div>
             </div>
-            <div class="blueprint-info">
-                <h2>Trampoline Sub-Floor Model</h2>
-                <p>Integrates a matrix of high-speed compact jointed robotic arms and micro-stepper motor linkages hidden underneath an athletic canvas. Sensors track incoming trajectories to execute a synchronized structural pull loop, drawing a suspended rigid floor panel downward before impact occurs.</p>
-                <ul class="tech-specs-list">
-                    <li>Automated tracking reticle path diagnostics [Specs_TUP64682.pdf]</li>
-                    <li>Heavy-duty shock absorption frameworks [Specs_TUP64682.pdf]</li>
-                    <li>Sub-five millisecond active canvas displacement spooling [Specs_TUP64682.pdf]</li>
-                </ul>
-            </div>
-        </section>
 
-        <!-- Blueprint 3: Smart Liquid Model (Fixed Local Server Path) -->
-        <section class="blueprint-row">
-            <div class="blueprint-media">
-                <img src="./liquid.jpg" class="blueprint-image" alt="Smart Liquid Shock Absorption">
-            </div>
-            <div class="blueprint-info">
-                <h2>Smart Liquid Model</h2>
-                <p>Employs localized fluid-filled containment jackets charged with responsive thixotropic gel. The moment an extreme velocity load strikes the surface, the fluid transitions from a free-flowing state into a dense, rigid solid structure to swallow kinetic energy and stop bounce-back recoil entirely.</p>
-                <ul class="tech-specs-list">
-                    <li>Dynamic phase-changing fluid dynamics architecture [Specs_TUP64682.pdf]</li>
-                    <li>Zero-rebound kinetic energy capture metrics [Specs_TUP64682.pdf]</li>
-                    <li>Localized gel containment bladders beneath surface sheets [Specs_TUP64682.pdf]</li>
-                </ul>
-            </div>
-        </section>
-
-        <!-- Blueprint 4: High-Pressure Air Model (Fixed Local Server Path) -->
-        <section class="blueprint-row">
-            <div class="blueprint-media">
-                <img src="./air.jpg" class="blueprint-image" alt="Pneumatic High Pressure Air Matrix">
-            </div>
-            <div class="blueprint-info">
-                <h2>High-Pressure Air Model</h2>
-                <p>Utilizes a dense matrix of high-pressure air pocket cells driven by variable-porosity pneumatic aperture control valves. Microchip-controlled sensor nodes continuously read localized pressure shifts, venting air volume under a sub-five millisecond loop to create a safe deflection pocket right on impact.</p>
-                <ul class="tech-specs-list">
-                    <li>Microprocessor-triggered automated aperture venting valves [Specs_TUP64682.pdf]</li>
-                    <li>Real-time telemetry pressure tracking arrays [Specs_TUP64682.pdf]</li>
-                    <li>Variable independent cell pressure distribution metrics [Specs_TUP64682.pdf]</li>
-                </ul>
-            </div>
-        </section>
-
+        </div>
     </main>
 
     <footer>
-        <div>&copy; 2026 FutureSurface Technologies. All Rights Reserved.</div>
-        <div style="color: rgba(255,255,255,0.2);">Private Portfolio Archive. Waltham, MA. [PTO/SB/16]</div>
+        <p>&copy; 2026 FutureSurface Technologies. All Rights Reserved.</p>
     </footer>
 
 </body>
