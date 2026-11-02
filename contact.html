@@ -60,11 +60,6 @@
         .btn-submit { width: 100%; background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary)); color: #000; border: none; padding: 0.9rem; font-size: 1rem; font-weight: 700; border-radius: 8px; cursor: pointer; transition: opacity 0.2s ease, transform 0.2s ease; margin-top: 0.5rem; }
         .btn-submit:hover { opacity: 0.95; transform: translateY(-1px); }
 
-        /* NATIVE BACKGROUND SUCCESS NOTICE NOTIFICATION BOXES */
-        .form-status { display: none; margin-top: 1.5rem; padding: 1rem; border-radius: 8px; font-weight: 600; font-size: 0.95rem; text-align: center; }
-        .form-status.success { display: block; background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); color: #34d399; }
-        .form-status.error { display: block; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); color: #f87171; }
-
         footer { max-width: 1200px; margin: 4rem auto 0 auto; padding: 3rem 2rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; color: var(--text-secondary); font-size: 0.875rem; }
         
         /* RESPONSIVE LAYOUTS */
@@ -113,10 +108,13 @@
     <main class="form-container">
         <span class="badge">General Inquiries</span>
         
-        <form class="contact-form" id="contactForm">
+        <form class="contact-form" action="https://web3forms.com" method="POST">
             <!-- EMBEDDED SYSTEM SUBMISSION KEY ACCESS TOKEN TOKEN -->
             <input type="hidden" name="access_key" value="bdb81f63-8133-4a40-95f2-f4ad22f63247">
             
+            <!-- Redirects back to your live contact page on successful submission -->
+            <input type="hidden" name="redirect" value="https://github.io">
+
             <div class="form-group">
                 <label for="name">Full Name</label>
                 <input type="text" id="name" name="name" class="form-control" required placeholder="John Doe">
@@ -137,8 +135,7 @@
                 <textarea id="message" name="message" class="form-control" required placeholder="How can our engineering teams assist with your infrastructure requirements?"></textarea>
             </div>
             
-            <button type="submit" class="btn-submit" id="submitBtn">Submit Inquiry</button>
-            <div class="form-status" id="formStatus"></div>
+            <button type="submit" class="btn-submit">Submit Inquiry</button>
         </form>
     </main>
 
@@ -146,43 +143,5 @@
         <p>&copy; 2026 FutureSurface Technologies. All Rights Reserved.</p>
     </footer>
 
-    <!-- BYPASSES NET FILTER SECURITY POLICIES BY USING NATIVE FORMDATA OBJECTS -->
-    <script>
-        const form = document.getElementById('contactForm');
-        const statusMsg = document.getElementById('formStatus');
-        const submitBtn = document.getElementById('submitBtn');
-
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            submitBtn.textContent = 'Sending...';
-            submitBtn.disabled = true;
-
-            const formData = new FormData(form);
-
-            fetch('https://web3forms.com', {
-                method: 'POST',
-                body: formData
-            })
-            .then(async (response) => {
-                let res = await response.json();
-                if (response.status == 200) {
-                    statusMsg.className = "form-status success";
-                    statusMsg.textContent = "Inquiry sent successfully. Our engineering team will follow up shortly.";
-                    form.reset();
-                } else {
-                    statusMsg.className = "form-status error";
-                    statusMsg.textContent = res.message || "An error occurred. Please try again.";
-                }
-            })
-            .catch(error => {
-                statusMsg.className = "form-status error";
-                statusMsg.textContent = "Submission error. Please check your form fields.";
-            })
-            .then(() => {
-                submitBtn.textContent = 'Submit Inquiry';
-                submitBtn.disabled = false;
-            });
-        });
-    </script>
 </body>
 </html>
