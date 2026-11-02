@@ -113,7 +113,13 @@
         <span class="badge">Secure Resource Download</span>
         <p class="sub-headline">Gain immediate access to the technical documentation library, blueprint archives, and active matrix whitepapers.</p>
         
-        <form class="secure-form" action="#" method="POST">
+        <form class="secure-form" action="https://api.web3forms.com/submit" method="POST">
+            <!-- Form Access Key -->
+            <input type="hidden" name="access_key" value="bdb81f63-8133-4a40-95f2-f4ad22f63247">
+            
+            <!-- Anti-Spam Honeypot Field -->
+            <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
             <div class="form-group">
                 <label for="name">Full Name</label>
                 <input type="text" id="name" name="name" class="form-control" required placeholder="Jane Doe">
