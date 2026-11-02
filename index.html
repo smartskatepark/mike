@@ -24,6 +24,7 @@
             background-color: var(--bg-dark);
             color: var(--text-primary);
             line-height: 1.6;
+            padding-top: 120px;
         }
 
         /* HEADER NAVIGATION STYLING */
@@ -37,9 +38,8 @@
         .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.2s ease; }
         .nav-links a:hover { color: var(--accent-primary); }
 
-        /* HERO AREA WITH CORRECTED PC DESKTOP GAP SPACING */
         .hero {
-            max-width: 1200px; margin: 0 auto; padding: 10rem 2rem 2rem 2rem; text-align: center; position: relative;
+            max-width: 1200px; margin: 0 auto; padding: 4rem 2rem 2rem 2rem; text-align: center; position: relative;
         }
 
         .hero::before {
@@ -118,8 +118,15 @@
             max-width: 1200px; margin: 6rem auto 0 auto; padding: 3rem 2rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; color: var(--text-secondary); font-size: 0.875rem;
         }
 
-        /* FIXED MOBILE QUERY - PORTED ONE-TO-ONE FROM DESIGNS CONFIG */
+        /* FIXED MOBILE QUERY - PORTED ONE-TO-ONE FROM DESIGNS FLOW CONFIG */
         @media (max-width: 968px) {
+            .nav-wrapper {
+                position: relative !important;
+                background: var(--bg-dark) !important;
+            }
+            body {
+                padding-top: 0 !important;
+            }
             .sector-grid { grid-template-columns: 1fr; }
             .navbar { 
                 flex-direction: column !important; 
@@ -133,7 +140,7 @@
                 gap: 1.5rem;
             }
             .hero {
-                padding: 14.5rem 1rem 2.5rem 1rem !important;
+                padding: 4rem 1rem 2.5rem 1rem !important;
             }
             .hero h1 { 
                 font-size: 2rem !important; 
@@ -182,7 +189,7 @@
         <h1>Next-generation safety engineering for transforming hard surfaces into smart, impact-absorbing surfaces.</h1>
         <p>Our systems allow structural floors, stairs, and walls to dynamically shift states for maximum protection. By utilizing handheld devices, voice tech, or motion sensors, the platform detects a falling trajectory to activate targeted safety zones instantly.</p>
         <div class="cta-group">
-            <a href="#" class="btn btn-primary">Explore Our Tech</a>
+            <a href="applications.html" class="btn btn-primary">Explore Our Tech</a>
             <a href="#" class="btn btn-secondary">Download Whitepaper</a>
         </div>
     </header>
@@ -197,8 +204,8 @@
         </section>
 
         <div class="sector-grid">
-            <!-- Card 1: Left -->
-            <a href="#" class="sector-card">
+            <!-- Card 1: Left - Links to Skatepark & Turf sections -->
+            <a href="applications.html" class="sector-card">
                 <div>
                     <h3>Sports Facilities</h3>
                     <p>Adaptive impact arrays for turf fields and skate structures.</p>
@@ -206,8 +213,8 @@
                 <span class="sector-link">View Systems &rarr;</span>
             </a>
 
-            <!-- Card 2: Middle -->
-            <a href="#" class="sector-card">
+            <!-- Card 2: Middle - Links to Warehouse Industrial section -->
+            <a href="applications.html" class="sector-card">
                 <div>
                     <h3>Industrial Zones</h3>
                     <p>Engineered to shield workers and equipment from structural drop impacts.</p>
@@ -215,8 +222,8 @@
                 <span class="sector-link">View Systems &rarr;</span>
             </a>
 
-            <!-- Card 3: Right -->
-            <a href="#" class="sector-card">
+            <!-- Card 3: Right - Links to Home & Playground sections -->
+            <a href="applications.html" class="sector-card">
                 <div>
                     <h3>Consumer Spaces</h3>
                     <p>Low-profile fluid layers for homes and playgrounds.</p>
