@@ -39,7 +39,7 @@
         .nav-links a:hover { color: var(--accent-primary); }
 
         .hero {
-            max-width: 1200px; margin: 0 auto; padding: 4rem 2rem 6rem 2rem; text-align: center; position: relative;
+            max-width: 1200px; margin: 0 auto; padding: 4rem 2rem 2rem 2rem; text-align: center; position: relative;
         }
 
         .hero::before {
@@ -58,7 +58,7 @@
             font-size: 1.2rem; color: var(--text-secondary); max-width: 800px; margin: 0 auto 2.5rem auto; line-height: 1.7;
         }
 
-        .cta-group { display: flex; gap: 1rem; justify-content: center; }
+        .cta-group { display: flex; gap: 1rem; justify-content: center; margin-bottom: 3.5rem; }
 
         .btn {
             display: inline-block; padding: 0.75rem 1.5rem; font-weight: 600; border-radius: 8px; text-decoration: none; font-size: 0.95rem; transition: all 0.2s ease;
@@ -74,6 +74,21 @@
 
         .btn-secondary { background: transparent; color: #ffffff; border: 1px solid rgba(255, 255, 255, 0.15); }
         .btn-secondary:hover { background: rgba(255, 255, 255, 0.05); border-color: #ffffff; }
+
+        /* NEW HERO HERO BANNER STYLING */
+        .hero-banner-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        .hero-banner-img {
+            width: 100%;
+            height: auto;
+            border-radius: 16px;
+            border: 1px solid rgba(6, 182, 212, 0.25);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+            display: block;
+        }
 
         .main-content { max-width: 1200px; margin: 0 auto; padding: 4rem 2rem; }
 
@@ -102,11 +117,45 @@
             max-width: 1200px; margin: 6rem auto 0 auto; padding: 3rem 2rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; color: var(--text-secondary); font-size: 0.875rem;
         }
 
+        /* INTEGRATED MOBILE CODE FIXES */
         @media (max-width: 968px) {
             .sector-grid { grid-template-columns: 1fr; }
-            .navbar, footer { flex-direction: column; gap: 1.5rem; text-align: center; }
-            .hero h1 { font-size: 2.3rem; }
-            .cta-group { flex-direction: column; }
+            .navbar { 
+                flex-direction: column !important; 
+                gap: 1.25rem !important; 
+                text-align: center !important; 
+                padding: 1.5rem 1rem !important;
+            }
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1.5rem;
+            }
+            .hero {
+                padding: 2.5rem 1rem 1rem 1rem !important;
+            }
+            .hero h1 { 
+                font-size: 2rem !important; 
+                line-height: 1.3 !important;
+                letter-spacing: -0.02em !important;
+            }
+            .hero p {
+                font-size: 1rem !important;
+                line-height: 1.6 !important;
+            }
+            .badge { 
+                font-size: 0.7rem !important; 
+                padding: 0.4rem 1rem !important;
+                display: inline-block !important;
+                width: auto !important;
+                max-width: 100% !important;
+                white-space: normal !important; 
+                margin: 0 auto 1.5rem auto !important;
+            }
+            .cta-group { flex-direction: column; gap: 0.75rem; margin-bottom: 2rem; }
+            .btn { width: 100%; text-align: center; }
+            .hero-banner-container { padding: 0 1rem; }
+            footer { flex-direction: column; gap: 1.5rem; text-align: center; }
         }
     </style>
 </head>
@@ -127,12 +176,17 @@
     <header class="hero">
         <span class="badge">ACTIVE IMPACT TECHNOLOGIES</span>
         <h1>Next-generation safety engineering for transforming hard surfaces into smart, impact-absorbing surfaces.</h1>
-        <p>Our systems allow structural floors, stairs, and walls to dynamically shift states for maximum protection.</p>
+        <p>Our systems allow structural floors, stairs, and walls to dynamically shift states for maximum protection. By utilizing handheld devices, voice tech, or motion sensors, the platform detects a falling trajectory to activate targeted safety zones instantly.</p>
         <div class="cta-group">
             <a href="designs.html" class="btn btn-primary">Explore Our Tech</a>
             <a href="request.html" class="btn btn-secondary">Download Whitepaper</a>
         </div>
     </header>
+
+    <!-- NEW CLEAN BANNER LOCATION -->
+    <div class="hero-banner-container">
+        <img src="matrix-crosssection.jpg" class="hero-banner-img" alt="Active Impact Matrix Cross Section">
+    </div>
 
     <main class="main-content">
         <section class="sector-hub">
@@ -153,29 +207,3 @@
 
                 <!-- BOX 2 -->
                 <a href="applications.html" class="sector-card">
-                    <div>
-                        <h3>Industrial Zones</h3>
-                        <p>Engineered to shield workers and equipment from structural drop impacts.</p>
-                    </div>
-                    <span class="sector-link">View Systems →</span>
-                </a>
-
-                <!-- BOX 3 -->
-                <a href="applications.html" class="sector-card">
-                    <div>
-                        <h3>Consumer Spaces</h3>
-                        <p>Low-profile fluid layers for homes and playgrounds.</p>
-                    </div>
-                    <span class="sector-link">View Systems →</span>
-                </a>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2026 FutureSurface Technologies. All rights reserved.</p>
-        <p>Active Impact Matrix v2.4</p>
-    </footer>
-
-</body>
-</html>
