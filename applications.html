@@ -18,9 +18,22 @@
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Inter', -apple-system, sans-serif; background-color: var(--bg-dark); color: var(--text-primary); line-height: 1.6; padding-top: 120px; }
         
-        .nav-wrapper { position: fixed; top: 0; left: 0; width: 100%; border-bottom: 1px solid var(--border); background: rgba(3, 7, 18, 0.9); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); z-index: 1000; }
+        body { 
+            font-family: 'Inter', -apple-system, sans-serif; 
+            background-color: var(--bg-dark); 
+            color: var(--text-primary); 
+            line-height: 1.6; 
+        }
+        
+        /* HEADER NAVIGATION STYLING - ALIGNED WITH DESIGNS FLOW */
+        .nav-wrapper { 
+            border-bottom: 1px solid var(--border); 
+            background: rgba(3, 7, 18, 0.9); 
+            backdrop-filter: blur(15px); 
+            -webkit-backdrop-filter: blur(15px); 
+            width: 100%;
+        }
         .navbar { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 2rem; max-width: 1200px; margin: 0 auto; width: 100%; }
         .logo { font-weight: 800; font-size: 1.25rem; background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-decoration: none; }
         .nav-links { display: flex; gap: 2rem; list-style: none; }
@@ -28,17 +41,18 @@
         .nav-links a:hover, .nav-links a.active { color: var(--accent-primary); }
         .btn-nav { display: inline-block; padding: 0.5rem 1rem; font-weight: 600; border-radius: 8px; text-decoration: none; font-size: 0.85rem; background: transparent; color: var(--text-primary); border: 1px solid var(--border); }
 
+        /* HEADER PACK WITH EXACT DESIGNS METRICS */
         .showcase-header { max-width: 1200px; margin: 0 auto; padding: 4rem 2rem 2rem 2rem; text-align: center; }
-        .badge { display: inline-block; padding: 0.35rem 1.25rem; background: rgba(6, 182, 212, 0.1); border: 1px solid rgba(6, 182, 212, 0.25); color: var(--accent-primary); border-radius: 9999px; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; margin-bottom: 1.5rem; letter-spacing: 0.05em; white-space: nowrap; }
+        .badge { display: inline-block; padding: 0.35rem 1.25rem; background: rgba(6, 182, 212, 0.1); border: 1px solid rgba(6, 182, 212, 0.2); color: var(--accent-primary); border-radius: 9999px; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; margin-bottom: 1.5rem; width: max-content; max-width: 100%; }
         .showcase-header h1 { font-size: 3.2rem; font-weight: 800; line-height: 1.2; margin-bottom: 1.5rem; letter-spacing: -0.03em; }
 
+        /* INTERIOR LAYOUT ZONE GRID GRID */
         .grid-container { max-width: 1200px; margin: 0 auto; padding: 4rem 2rem; }
         .app-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 3rem; }
         
         .app-card { background: var(--bg-surface); border: 1px solid var(--border); border-radius: 16px; padding: 2rem; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column; justify-content: space-between; }
         .app-card:hover { border-color: var(--border-hover); transform: translateY(-4px); box-shadow: 0 12px 30px -10px rgba(6, 182, 212, 0.15); }
         
-        /* 7th Card spans the full widescreen row at the bottom */
         .app-card.full-width { grid-column: 1 / -1; }
         
         .app-media { width: 100%; margin-bottom: 1.5rem; position: relative; border-radius: 10px; overflow: hidden; border: 1px solid rgba(6, 182, 212, 0.15); }
@@ -49,12 +63,43 @@
         
         footer { max-width: 1200px; margin: 4rem auto 0 auto; padding: 3rem 2rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; color: var(--text-secondary); font-size: 0.875rem; }
         
+        /* ISOLATED RESPONSIVE OVERRIDES - INDISTINGUISHABLE FROM DESIGNS CONFIG */
         @media (max-width: 968px) { 
-            .app-grid { grid-template-columns: 1fr; } 
-            .app-card.full-width { grid-column: auto; } 
-            .navbar, footer { flex-direction: column; gap: 1.5rem; text-align: center; } 
-            .showcase-header h1 { font-size: 2.2rem; } 
-            .badge { padding: 0.35rem 1rem; font-size: 0.75rem; display: inline-flex; justify-content: center; }
+            .navbar { 
+                flex-direction: column !important; 
+                gap: 1.25rem !important; 
+                text-align: center !important; 
+                padding: 1.5rem 1rem !important;
+            }
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1.5rem;
+            }
+            .showcase-header {
+                padding: 2.5rem 1rem !important;
+            }
+            .showcase-header h1 { 
+                font-size: 2rem !important; 
+                line-height: 1.3 !important;
+                letter-spacing: -0.02em !important;
+            }
+            .showcase-header p {
+                font-size: 1rem !important;
+                line-height: 1.6 !important;
+            }
+            .badge { 
+                font-size: 0.7rem !important; 
+                padding: 0.4rem 1rem !important;
+                display: inline-block !important;
+                width: auto !important;
+                max-width: 100% !important;
+                white-space: normal !important; 
+                margin: 0 auto 1.5rem auto !important;
+            }
+            .app-grid { grid-template-columns: 1fr !important; gap: 2rem !important; } 
+            .app-card.full-width { grid-column: auto !important; } 
+            footer { flex-direction: column; gap: 1.5rem; text-align: center; } 
         }
     </style>
 </head>
@@ -76,16 +121,14 @@
         <span class="badge">Field Implementations</span>
         <h1>Active Surface Environments</h1>
     </header>
-
     <main class="grid-container">
         <div class="app-grid">
-
             <!-- Card 1: Skateparks -->
             <div id="sports" class="app-card">
                 <div class="app-media"><img src="skateboard.jpg" class="app-image" alt="Skatepark Drop-In Simulation"></div>
                 <div>
                     <h2>Skatepark Infrastructure</h2>
-                    <p>Absorbs high-impact wheel drop forces across modular skating blocks. Built-in decentralized logic nodes track active structural deflection under an ultra-fast sub-5 millisecond response loop, protecting extreme athletes while maintaining deck rigid tracking speed lines.</p>
+                    <p>Absorbs high-impact wheel drop forces with a sub-5 millisecond response loop to protect athletes while maintaining deck speed.</p>
                 </div>
             </div>
 
@@ -94,7 +137,7 @@
                 <div class="app-media"><img src="football.jpg" class="app-image" alt="Stadium Turf Field Mitigation"></div>
                 <div>
                     <h2>Stadium Turf</h2>
-                    <p>Neutralizes severe head-first body impact signatures via subsurface active absorption loops. Mechanical linkages underneath the grass matrix contract dynamically to swallow high G-force kinetic trauma, significantly lowering concussion metrics.</p>
+                    <p>Neutralizes high G-force kinetic impacts via subsurface active absorption loops underneath the grass matrix.</p>
                 </div>
             </div>
 
@@ -103,7 +146,7 @@
                 <div class="app-media"><img src="hockey.jpg" class="app-image" alt="Hockey Dasher Board Deflection"></div>
                 <div>
                     <h2>Hockey Dasher Boards</h2>
-                    <p>Integrates responsive pneumatic air displacement damping directly into perimeter glass and dasher frameworks. High-velocity body checks trigger instant lateral board flexibility to dissipate kinetic energy vectors without disrupting standard puck rebounds.</p>
+                    <p>Uses responsive pneumatic air displacement damping in perimeter glass to dissipate energy vectors during body checks.</p>
                 </div>
             </div>
 
@@ -112,7 +155,7 @@
                 <div class="app-media"><img src="basketball.jpg" class="app-image" alt="Basketball Court Launch Assist"></div>
                 <div>
                     <h2>Basketball Court Propulsion</h2>
-                    <p>Deploys a subsurface mechanical active assist matrix to dynamically track player downward force signatures. The platform rapidly releases stored pneumatic potential energy to provide launch-assist vertical acceleration profiles while dampening joint landing shocks.</p>
+                    <p>Deploys a subsurface mechanical matrix to release stored pneumatic energy for launch-assist acceleration and joint shock dampening.</p>
                 </div>
             </div>
 
@@ -121,34 +164,14 @@
                 <div class="app-media"><img src="home.jpg" class="app-image" alt="Smart Home Hardwood Security"></div>
                 <div>
                     <h2>Home Environments</h2>
-                    <p>Designed for residential protection under a premium matte hardwood finish. A localized fluid-filled thixotropic attenuation layer sits beneath the wood panels, immediately transitioning to a dense solid structure to neutralize unexpected family slip and fall trauma completely flat.</p>
+                    <p>Features a thixotropic attenuation layer beneath matte hardwood to harden instantly and neutralize slip-and-fall impacts.</p>
                 </div>
             </div>
-
-            <!-- Card 6: Playground Safety -->
-            <div class="app-card">
-                <div class="app-media"><img src="playground.jpg" class="app-image" alt="Outdoor Playground Protection"></div>
-                <div>
-                    <h2>Playground Safety</h2>
-                    <p>Engineered for outdoor community parks using a thick, weatherproof top membrane. The active thixotropic sub-layer achieves 100% absorption and zero bounce-back recoil to insulate children from heavy fall hazards.</p>
-                </div>
-            </div>
-
-            <!-- Card 7: Industrial Workplace (Widescreen Box Row) -->
-            <div id="industrial" class="app-card full-width">
-                <div class="app-media"><img src="warehouse.jpg" class="app-image" alt="Warehouse Industrial Safety"></div>
-                <div>
-                    <h2>Industrial Workplace</h2>
-                    <p>Deploys a dense network of pneumatic air-pocket cells beneath heavy warehouse distribution floors. Microchip-controlled sensor meshes track falling hazards or worker slips, venting high-pressure air through variable-porosity valves to isolate deflection pockets instantly.</p>
-                </div>
-            </div>
-
         </div>
     </main>
 
     <footer>
-        <p>&copy; 2026 FutureSurface Technologies. All Rights Reserved.</p>
+        <p>&copy; 2026 FutureSurface Technologies. All rights reserved.</p>
     </footer>
-
 </body>
 </html>
