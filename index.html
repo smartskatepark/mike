@@ -32,7 +32,7 @@
             padding-top: 120px;
         }
 
-        /* PERFECTLY CENTERED NAVIGATION BAR CONTAINER */
+        /* HEADER NAVIGATION CONTAINER */
         .nav-wrapper {
             position: fixed; 
             top: 0; 
@@ -86,7 +86,7 @@
         .hero {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 4rem 2rem 6rem 2rem;
+            padding: 4rem 2rem 2rem 2rem;
             text-align: center;
             position: relative;
         }
@@ -106,7 +106,7 @@
 
         .badge {
             display: inline-block;
-            padding: 0.35rem 1.25rem;
+            padding: 0.4rem 1.25rem;
             background: rgba(6, 182, 212, 0.1);
             border: 1px solid rgba(6, 182, 212, 0.25);
             color: var(--accent-primary);
@@ -116,7 +116,8 @@
             letter-spacing: 0.05em;
             text-transform: uppercase;
             margin-bottom: 1.5rem;
-            white-space: nowrap; /* Prevents text fragmentation */
+            width: max-content;
+            max-width: 100%;
         }
 
         .hero h1 {
@@ -163,21 +164,6 @@
 
         .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
 
-        .btn-nav {
-            display: inline-block;
-            padding: 0.5rem 1rem;
-            font-weight: 600;
-            border-radius: 8px;
-            text-decoration: none;
-            font-size: 0.85rem;
-            background: transparent;
-            color: #ffffff;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            transition: all 0.2s ease;
-        }
-
-        .btn-nav:hover { background: rgba(255, 255, 255, 0.05); border-color: #ffffff; }
-
         .btn-secondary {
             background: transparent;
             color: #ffffff;
@@ -186,11 +172,30 @@
 
         .btn-secondary:hover { background: rgba(255, 255, 255, 0.05); border-color: #ffffff; }
 
+        /* AUTOMATIC HORIZONTAL CROPPING SHOWCASE BANNER CONTAINER */
+        .showcase-banner-box {
+            width: 100%;
+            max-width: 1000px;
+            height: 380px; 
+            margin: 4rem auto;
+            border-radius: 16px;
+            border: 1px solid rgba(6, 182, 212, 0.3); 
+            box-shadow: 0 0 30px rgba(6, 182, 212, 0.15);
+            overflow: hidden; 
+        }
+
+        .showcase-banner-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+            object-position: center; 
+        }
+
         /* B2B SECTOR CONTAINER AREA */
         .main-content {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 4rem 2rem;
+            padding: 2rem 2rem 4rem 2rem;
         }
 
         .section-header {
@@ -212,7 +217,7 @@
             margin: 0 auto;
         }
 
-        /* 3-COLUMN MASONRY GRID LAYOUT */
+        /* 3-COLUMN ORIGINAL GRID LAYOUT */
         .sector-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -221,10 +226,10 @@
         }
 
         .sector-card {
-            background-color: var(--bg-surface);
+            background-color: rgba(15, 23, 42, 0.6);
             border: 1px solid var(--border);
             border-radius: 16px;
-            padding: 2.5rem;
+            padding: 3rem 2.5rem;
             text-align: left;
             text-decoration: none;
             color: inherit;
@@ -232,6 +237,7 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            min-height: 280px;
         }
 
         .sector-card:hover {
@@ -241,17 +247,17 @@
         }
 
         .sector-card h3 {
-            font-size: 1.35rem;
-            margin-bottom: 0.75rem;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
             font-weight: 700;
             color: var(--text-primary);
         }
 
         .sector-card p {
             color: var(--text-secondary);
-            font-size: 0.95rem;
-            line-height: 1.5;
-            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 2.5rem;
         }
 
         .sector-link {
@@ -260,11 +266,12 @@
             color: var(--accent-primary);
             text-transform: uppercase;
             letter-spacing: 0.05em;
+            margin-top: auto;
         }
 
         footer {
             max-width: 1200px;
-            margin: 6rem auto 0 auto;
+            margin: 4rem auto 0 auto;
             padding: 3rem 2rem;
             border-top: 1px solid var(--border);
             display: flex;
@@ -274,50 +281,62 @@
             font-size: 0.875rem;
         }
 
-        /* RESPONSIVE MOBILE ADJUSTMENTS */
+        /* ISOLATED MOBILE RULES (ACTIVATES ON SMARTPHONES ONLY) */
         @media (max-width: 968px) {
-            .sector-grid { grid-template-columns: 1fr; }
-            .navbar, footer { flex-direction: column; gap: 1.5rem; text-align: center; }
-            .hero h1 { font-size: 2.1rem; }
-            .cta-group { flex-direction: column; }
-            .badge { 
-                padding: 0.35rem 1rem; 
-                font-size: 0.75rem; 
-                max-width: 100%; 
-                display: inline-flex; 
-                justify-content: center;
+            body {
+                padding-top: 0px !important; 
             }
-        }
-    </style>
-</head>
-<body>
-
-    <!-- Center-Aligned Header Menu Bar Node -->
-    <div class="nav-wrapper">
-        <nav class="navbar">
-            <a href="index.html" class="logo">FutureSurface</a>
-            <ul class="nav-links">
-                <li><a href="designs.html">Designs</a></li>
-                <li><a href="applications.html">Applications</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-            <a href="request.html" class="btn-nav">Request Portfolio</a>
-        </nav>
-    </div>
-
-    <!-- Main Introduction Hero Panel Box -->
-    <header class="hero">
-        <span class="badge">Active Impact Technologies</span>
-        <h1>Next-generation safety engineering for transforming hard surfaces into smart, impact-absorbing surfaces.</h1>
-        <p>Our systems allow structural floors, stairs, and walls to dynamically shift states for maximum protection. By utilizing handheld devices, voice tech, or motion sensors, the platform detects a falling trajectory to activate targeted safety zones instantly.</p>
-        <div class="cta-group">
-            <a href="designs.html" class="btn btn-primary">Explore Our Tech</a>
-            <a href="request.html" class="btn btn-secondary">Download Whitepaper</a>
-        </div>
-    </header>
-
-    <!-- THREE-CARD MARKET HUB -->
-    <main class="main-content">
-        <section class="sector-hub">
-            <div class="section-header">
-                <h2>Target Market Segments</h2>
+            .nav-wrapper {
+                position: relative; 
+            }
+            .navbar { 
+                flex-direction: column !important; 
+                gap: 1.25rem !important; 
+                text-align: center !important; 
+                padding: 1.5rem 1rem !important;
+            }
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1.5rem;
+            }
+            .hero {
+                padding: 2rem 1rem 1rem 1rem;
+            }
+            .hero h1 { 
+                font-size: 2rem !important; 
+                line-height: 1.3 !important;
+                letter-spacing: -0.02em !important;
+            }
+            .hero p {
+                font-size: 1rem !important;
+                line-height: 1.6 !important;
+            }
+            .badge { 
+                font-size: 0.7rem !important; 
+                padding: 0.4rem 1rem !important;
+                display: inline-block !important;
+                width: auto !important;
+                max-width: 100% !important;
+                white-space: normal !important; 
+                margin: 0 auto 1.5rem auto !important;
+            }
+            .showcase-banner-box {
+                height: 180px !important; 
+                margin: 2rem auto !important;
+                border-radius: 12px;
+            }
+            .sector-grid { 
+                grid-template-columns: 1fr !important; 
+                gap: 1.5rem !important;
+            }
+            .sector-card {
+                min-height: auto !important;
+                padding: 2rem 1.5rem !important;
+            }
+            .cta-group { 
+                flex-direction: column; 
+                width: 100%;
+            }
+            .btn {
+                width: 100%;
