@@ -85,12 +85,12 @@
     <main class="form-container">
         <span class="badge">General Inquiries</span>
         
-        <form class="contact-form" action="https://web3forms.com" method="POST">
-            <!-- EMBEDDED SYSTEM SUBMISSION ACCESS KEY TOKEN -->
+        <form class="contact-form" action="https://api.web3forms.com/submit" method="POST">
+            <!-- Form Access Key -->
             <input type="hidden" name="access_key" value="bdb81f63-8133-4a40-95f2-f4ad22f63247">
             
-            <!-- Forces Web3Forms to immediately refresh directly back to your live domain layout -->
-            <input type="hidden" name="redirect" value="https://github.io">
+            <!-- Anti-Spam Honeypot Field -->
+            <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
 
             <div class="form-group">
                 <label for="name">Full Name</label>
